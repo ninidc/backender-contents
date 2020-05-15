@@ -12,7 +12,7 @@ class PageLayoutRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\PageLayout";
+        return "Backender\\Contents\\Entities\\PageLayout";
     }
 
     public function getDatatable($options = [])

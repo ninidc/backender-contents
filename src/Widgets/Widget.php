@@ -10,7 +10,7 @@ abstract class Widget
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\ContentField";
+        return "Backender\\Contents\\Entities\\ContentField";
     }
 
     public function __construct()

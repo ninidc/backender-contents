@@ -20,14 +20,14 @@
             <a href="{{route('tags')}}" class="btn btn-default btn-close"> <i class="fa fa-angle-left"></i> </a>
             <h1>
               <i class="fa fa-tag "></i>
-              {{Lang::get('architect::tag.new')}}
+              {{Lang::get('backender::tag.new')}}
             </h1>
 
             <div class="float-buttons pull-right">
 
             <div class="actions-dropdown">
               <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                {{Lang::get('architect::fields.actions')}}
+                {{Lang::get('backender::fields.actions')}}
                 <b class="caret"></b>
                 <div class="ripple-container"></div>
               </a>
@@ -36,13 +36,13 @@
                     <li>
                         <a href="#">
                             <i class="fa fa-plus-circle"></i>
-                            &nbsp;{{Lang::get('architect::fields.new')}}
+                            &nbsp;{{Lang::get('backender::fields.new')}}
                     </li>
                     <li>
                         <a href="#" class="text-danger">
                             <i class="fa fa-trash text-danger"></i>
                             &nbsp;
-                            <span class="text-danger">{{Lang::get('architect::fields.delete')}}</span>
+                            <span class="text-danger">{{Lang::get('backender::fields.delete')}}</span>
                         </a>
                     </li>
                 </ul>

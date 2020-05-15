@@ -15,7 +15,7 @@ class MediaRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Media";
+        return "Backender\\Contents\\Entities\\Media";
     }
 
     public function getDatatable()

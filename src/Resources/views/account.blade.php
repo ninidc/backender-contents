@@ -15,7 +15,7 @@
 			<div class="card">
 				<div class="card-body">
 
-					@include('architect::components.dropzone-image',[
+					@include('backender:contents::components.dropzone-image',[
 						'image' => isset($user) && isset($user->image) ? $user->image : null,
 						'size' => 'avatar',
 						'id' => 'dropzone-1',
@@ -31,41 +31,41 @@
         <div class="col-md-7">
 			<div class="card">
 				<div class="card-body">
-					<h3 class="card-title">{{Lang::get('architect::user.my_account')}}</h3>
-    				{{-- <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('architect::user.edit_account')}}</h6> --}}
+					<h3 class="card-title">{{Lang::get('backender::user.my_account')}}</h3>
+    				{{-- <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('backender::user.edit_account')}}</h6> --}}
 		            <div class="row">
 		                <div class="col-md-6">
 		                    <div class="form-group label-floating">
-		                        <label class="control-label">{{Lang::get('architect::fields.firstname')}}</label>
+		                        <label class="control-label">{{Lang::get('backender::fields.firstname')}}</label>
 		                        <input type="text" name="firstname" value="{{ $user->firstname or '' }}" class="form-control">
 		                    </div>
 		                </div>
 
 		                <div class="col-md-6">
 		                    <div class="form-group label-floating">
-		                        <label class="control-label">{{Lang::get('architect::fields.lastname')}}</label>
+		                        <label class="control-label">{{Lang::get('backender::fields.lastname')}}</label>
 		                        <input type="text" name="lastname" value="{{ $user->lastname or '' }}" class="form-control"/>
 		                    </div>
 		                </div>
 		            </div>
 
 					<div class="form-group label-floating">
-		                <label class="control-label">{{Lang::get('architect::fields.email')}}</label>
+		                <label class="control-label">{{Lang::get('backender::fields.email')}}</label>
 		                <input type="text" name="email" value="{{ $user->email or '' }}" class="form-control"/>
 		            </div>
 
 		            <div class="form-group label-floating">
-		                <label class="control-label">{{Lang::get('architect::fields.password')}}</label>
+		                <label class="control-label">{{Lang::get('backender::fields.password')}}</label>
 		                <input type="password" name="password" value="" class="form-control"/>
 		            </div>
 
 		            <div class="form-group label-floating">
-		                <label class="control-label">{{Lang::get('architect::fields.co_password')}}</label>
+		                <label class="control-label">{{Lang::get('backender::fields.co_password')}}</label>
 		                <input type="password" name="confirm_password" value="" class="form-control"/>
 		            </div>
 
 		            <div class="form-group label-floating text-left">
-						<input type="submit" value={{Lang::get('architect::fields.send')}} class="btn btn-success submit-form"/>
+						<input type="submit" value={{Lang::get('backender::fields.send')}} class="btn btn-success submit-form"/>
 		            </div>
 				</div>
 			</div>

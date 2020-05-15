@@ -2,14 +2,13 @@
 
 namespace Backender\Contents\Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-
 use Backender\Contents\Entities\Language;
-use Backender\Contents\Entities\Typology;
-use App\Models\Permission;
 
-class ArchitectTestDatabaseSeeder extends Seeder
+class BackenderContentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,9 +17,10 @@ class ArchitectTestDatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         Language::create([
-            'name' => 'Català',
-            'iso' => 'ca'
+            'name' => 'English',
+            'iso' => 'en'
         ]);
 
         Language::create([
@@ -29,12 +29,15 @@ class ArchitectTestDatabaseSeeder extends Seeder
         ]);
 
         Language::create([
-            'name' => 'English',
-            'iso' => 'en'
+            'name' => 'Français',
+            'iso' => 'fr'
         ]);
 
-
-        Model::unguard();
-
+        User::create([
+            'email' => 'admin@bar.com',
+            'password' => bcrypt('secret'),
+            'firstname' => 'John',
+            'lastname' => 'Admin',
+        ]);
     }
 }

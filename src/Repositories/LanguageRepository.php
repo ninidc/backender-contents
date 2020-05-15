@@ -12,7 +12,7 @@ class LanguageRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Language";
+        return "Backender\\Contents\\Entities\\Language";
     }
 
     public function getDatatable($options = [])

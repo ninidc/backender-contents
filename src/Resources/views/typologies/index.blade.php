@@ -6,7 +6,7 @@
       <div class="col-md-offset-2 col-md-8">
 
         <div class="page-title">
-          <h1>{{Lang::get('architect::tipology.tipologies')}}</h1> <a href="{{route('typologies.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::tipology.add')}}</a>
+          <h1>{{Lang::get('backender::tipology.tipologies')}}</h1> <a href="{{route('typologies.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::tipology.add')}}</a>
         </div>
 
         <div class="grid-items">

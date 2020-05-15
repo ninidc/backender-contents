@@ -9,7 +9,7 @@ abstract class Field
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\ContentField";
+        return "Backender\\Contents\\Entities\\ContentField";
     }
 
     public function getLanguageFromIso($iso, $languages)

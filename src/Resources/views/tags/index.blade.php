@@ -5,17 +5,17 @@
 
 <div class="container leftbar-page">
 
-  @include('architect::partials.content-nav',['typologies' => $typologies])
+  @include('backender:contents::partials.content-nav',['typologies' => $typologies])
 
   <div class="col-xs-offset-2 col-xs-10 page-content">
 
-    <h3 class="card-title">{{Lang::get('architect::fields.tags')}}</h3>
-    <a href="{{route('tags.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::tag.add')}}</a>
+    <h3 class="card-title">{{Lang::get('backender::fields.tags')}}</h3>
+    <a href="{{route('tags.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::tag.add')}}</a>
 
     <table class="table" id="table-tags" data-url="{{route('tags.data')}}">
         <thead>
            <tr>
-               <th>{{Lang::get('architect::fields.name')}}</th>
+               <th>{{Lang::get('backender::fields.name')}}</th>
                <th></th>
            </tr>
         </thead>

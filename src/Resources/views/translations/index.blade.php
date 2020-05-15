@@ -4,15 +4,15 @@
 <div class="container leftbar-page">
   <div class="col-xs-offset-2 col-xs-8 page-content">
 
-    <h3 class="card-title">{{Lang::get('architect::settings.translations')}}</h3>
-    <a href="{{route('translations.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::translates.add')}}</a>
+    <h3 class="card-title">{{Lang::get('backender::settings.translations')}}</h3>
+    <a href="{{route('translations.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::translates.add')}}</a>
 
     <table class="table" id="table" data-url="{{route('translations.data')}}">
         <thead>
            <tr>
-               <th>{{Lang::get('architect::translates.order')}}</th>
-               <th>{{Lang::get('architect::translates.identifier')}}</th>
-               <th>{{Lang::get('architect::translates.default_value')}}</th>
+               <th>{{Lang::get('backender::translates.order')}}</th>
+               <th>{{Lang::get('backender::translates.identifier')}}</th>
+               <th>{{Lang::get('backender::translates.default_value')}}</th>
                <th></th>
            </tr>
         </thead>

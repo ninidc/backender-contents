@@ -31,7 +31,7 @@
                 <div class="col-xs-8">
                   <nav class="main-nav">
                     <ul>
-                        @include('architect::partials.topbar-menu')
+                        @include('backender:contents::partials.topbar-menu')
                     </ul>
                   </nav>
                 </div>
@@ -54,7 +54,7 @@
 
                                   <li>
                                       <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                          <i class="fa fa-sign-out"></i> &nbsp; {{Lang::get('architect::header.disconnect')}}
+                                          <i class="fa fa-sign-out"></i> &nbsp; {{Lang::get('backender::header.disconnect')}}
                                       </a>
                                       <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
                                       {{csrf_field()}}

@@ -11,7 +11,7 @@ class StyleRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Style";
+        return "Backender\\Contents\\Entities\\Style";
     }
 
   

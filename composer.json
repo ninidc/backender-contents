@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Backender\\Contents\\ArchitectServiceProvider"
+                "Backender\\Contents\\BackenderContentProvider"
             ],
             "aliases": {}
         }

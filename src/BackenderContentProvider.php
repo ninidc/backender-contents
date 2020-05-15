@@ -111,17 +111,19 @@ class BackenderContentProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/architect');
+        $this->loadViewsFrom(__DIR__.'/Resources/views', 'backender:contents');
 
-        $sourcePath = __DIR__.'/Resources/views';
+        // $viewPath = resource_path('views/modules/architect');
 
-        $this->publishes([
-            $sourcePath => $viewPath,
-        ], 'views');
+        // $sourcePath = __DIR__.'/Resources/views';
 
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path.'/modules/architect';
-        }, \Config::get('view.paths')), [$sourcePath]), 'architect');
+        // $this->publishes([
+        //     $sourcePath => $viewPath,
+        // ], 'views');
+
+        // $this->loadViewsFrom(array_merge(array_map(function ($path) {
+        //     return $path.'/modules/architect';
+        // }, \Config::get('view.paths')), [$sourcePath]), 'architect');
     }
 
     /**
@@ -131,12 +133,7 @@ class BackenderContentProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/architect');
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'architect');
-        } else {
-            $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'architect');
-        }
+        $this->loadTranslationsFrom(__DIR__.'/Resources/lang', 'backender');
     }
 
     /**

@@ -12,13 +12,13 @@
             <div class="card">
 				<div class="card-body">
 
-                    <h3 class="card-title">{{Lang::get('architect::media.list')}}</h3>
-    				        <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('architect::media.all_media')}}</h6>
+                    <h3 class="card-title">{{Lang::get('backender::media.list')}}</h3>
+    				        <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('backender::media.all_media')}}</h6>
 
                     <div class="medias-dropfiles" style="cursor:pointer;">
                         <p align="center" style="pointer-events:none;">
-                            <strong>{{Lang::get('architect::fields.drag_file')}}</strong> <br />
-                            <a href="#" class="btn btn-default"><i class="fa fa-upload"></i> &nbsp; {{Lang::get('architect::fields.upload_file')}}</a>
+                            <strong>{{Lang::get('backender::fields.drag_file')}}</strong> <br />
+                            <a href="#" class="btn btn-default"><i class="fa fa-upload"></i> &nbsp; {{Lang::get('backender::fields.upload_file')}}</a>
                         </p>
                     </div>
 
@@ -42,8 +42,8 @@
                         <thead>
                            <tr>
                                <th></th>
-                               <th>{{Lang::get('architect::fields.filename')}}</th>
-                               <th data-filter="select">{{Lang::get('architect::fields.tipus')}}</th>
+                               <th>{{Lang::get('backender::fields.filename')}}</th>
+                               <th data-filter="select">{{Lang::get('backender::fields.tipus')}}</th>
                                <th></th>
                            </tr>
                         </thead>

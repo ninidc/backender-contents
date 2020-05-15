@@ -18,7 +18,7 @@ use Backender\Contents\Repositories\Criterias\ContentModalDatatableCriteria;
 class ContentRepository extends BaseRepository
 {
     protected $fieldSearchable = [
-    	  'typology_id',
+        'typology_id',
         'parent_id',
         'is_page',
         'published_at',
@@ -35,7 +35,7 @@ class ContentRepository extends BaseRepository
 
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Content";
+        return "Backender\\Contents\\Entities\\Content";
     }
 
     public function getDatatable($options = [])

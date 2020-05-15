@@ -9,7 +9,7 @@ class ArchitectController extends Controller
 {
     public function index()
     {
-        return view('architect::index');
+        return view('backender:contents::index');
     }
 
     public function settings()

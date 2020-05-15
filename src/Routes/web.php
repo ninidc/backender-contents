@@ -4,8 +4,8 @@
 Auth::routes();
 
 Route::group([
-//   'middleware' => ['web', 'DetectUserLocale'],
-  'prefix' => 'architect',
+  'middleware' => ['web', 'DetectUserLocale'],
+  'prefix' => 'backender',
   'namespace' => 'Backender\Contents\Http\Controllers'
 ], function()
 {
@@ -33,8 +33,8 @@ Route::group([
 |--------------------------------------------------------------------------
 */
 Route::group([
-//   'middleware' => ['web', 'DetectUserLocale'],
-  'prefix' => 'architect',
+  'middleware' => ['web', 'DetectUserLocale'],
+  'prefix' => 'backender',
   'namespace' => 'Backender\Contents\Http\Controllers'
 ], function()
 {
@@ -59,7 +59,7 @@ Route::group([
 
 Route::group([
   'middleware' => ['web', 'DetectUserLocale'],
-  'prefix' => 'architect',
+  'prefix' => 'backender',
   'namespace' => 'Backender\Contents\Http\Controllers'
 ], function()
 {

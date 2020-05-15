@@ -12,8 +12,7 @@
   const PAGE_SETTINGS = ['htmlClass','pageType'];
   const CONTENT_SETTINGS = ['htmlClass'];
   const CATEGORIES = {!! json_encode(Backender\Contents\Entities\Category::all(), JSON_PRETTY_PRINT) !!};
-  const DEFAULT_LOCALE = '{{ Backender\Contents\Entities\Language::getDefault()->iso}}';
+  const DEFAULT_LOCALE = '{{ Backender\Contents\Entities\Language::getDefault() ? Backender\Contents\Entities\Language::getDefault()->iso : ''}}';
   const ROLES = {!! json_encode(config('roles'), JSON_PRETTY_PRINT) !!};
   const FONTS = {!! json_encode(config('fonts'), JSON_PRETTY_PRINT) !!};
-  const ELEMENT_TEMPLATE_FIELDS = {!! json_encode(Modules\Extranet\Services\ElementTemplate\Fields\FieldConfig::get(), JSON_PRETTY_PRINT) !!};
 </script>

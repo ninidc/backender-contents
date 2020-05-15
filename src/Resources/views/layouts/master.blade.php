@@ -15,14 +15,14 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
         <link rel="stylesheet" media="all" href="{{ asset('modules/architect/css/app.css')}}" />
-        <link rel="stylesheet" media="all" href="{{ asset('modules/extranet/css/back-style.css')}}" />
+   
 
         <!-- Fonts -->
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" crossorigin="anonymous">
 
-        @include('architect::layouts.jsconst')
-        @include('extranet::layouts.jsconst')
+        @include('backender:contents::layouts.jsconst')
+
 
         <!-- Jquery -->
         <script src="{{ asset('modules/architect/plugins/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -97,7 +97,7 @@
 
                     @if(Auth::user())
                         @if(!isset($hideTopbar) || (isset($hideTopbar) && $hideTopbar === false))
-        	        	      @include('architect::layouts.topbar')
+        	        	      @include('backender:contents::layouts.topbar')
                         @endif
                     @endif
 
@@ -107,7 +107,7 @@
     	        </section>
             </section>
         </div>
-        @include('architect::partials.styles.back')
+        @include('backender:contents::partials.styles.back')
         @stack('javascripts-libs')
         @stack('javascripts')
     </body>

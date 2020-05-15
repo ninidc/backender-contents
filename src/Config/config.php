@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'name' => 'Architect',
-
     'elasticsearch' => [
 
         'enabled' => env('ELASTICSEARCH_ENABLED', false),
@@ -19,9 +17,5 @@ return [
 
         'index' => env('ELASTICSEARCH_INDEX', '')
     ],
-    'fallback_language' => 'ca',
-
-    'aliases' => [
-        'Datatables' => Yajra\DataTables\Facades\DataTables::class,
-    ]
+    'fallback_language' => 'en'
 ];

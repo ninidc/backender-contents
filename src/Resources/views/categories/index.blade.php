@@ -5,17 +5,17 @@
 
 <div class="container leftbar-page">
 
-  @include('architect::partials.content-nav',['typologies' => $typologies])
+  @include('backender:contents::partials.content-nav',['typologies' => $typologies])
 
   <div class="col-xs-offset-2 col-xs-10 page-content">
 
-    <h3 class="card-title">{{Lang::get('architect::category.categories')}}</h3>
-    <a href="{{route('categories.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::category.add')}}</a>
+    <h3 class="card-title">{{Lang::get('backender::category.categories')}}</h3>
+    <a href="{{route('categories.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::category.add')}}</a>
 
     <div class="grid-items">
       <div class="row">
         <ol class='sortable-list'>
-          {{Lang::get('architect::category.loading')}}
+          {{Lang::get('backender::category.loading')}}
         </ol>
       </div>
     </div>

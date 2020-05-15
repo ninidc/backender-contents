@@ -17,7 +17,7 @@ class MenuRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Menu";
+        return "Backender\\Contents\\Entities\\Menu";
     }
 
     public function getDatatable($options = [])

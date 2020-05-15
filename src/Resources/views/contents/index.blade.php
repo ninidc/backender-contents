@@ -2,11 +2,11 @@
 
 @section('content')
 
-@include('architect::contents.modal-new')
+@include('backender:contents::contents.modal-new')
 
 <div class="container leftbar-page">
 
-  @include('architect::partials.content-nav',[
+  @include('backender:contents::partials.content-nav',[
     'typologies' => $typologies,
     'typology_id' => Request('typology_id'),
     'display_pages' => Request('display_pages')
@@ -14,16 +14,16 @@
 
   <div class="col-xs-offset-2 col-xs-10 page-content">
 
-    <h3 class="card-title"> {{Lang::get('architect::contents.contents')}}</h3>
-    <a href="#" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::contents.add')}}</a>
+    <h3 class="card-title"> {{Lang::get('backender::contents.contents')}}</h3>
+    <a href="#" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::contents.add')}}</a>
 
     <table class="table" id="table-contents" data-url="{{route('contents.data', request()->all())}}">
         <thead>
            <tr>
-               <th> {{Lang::get('architect::fields.name')}}</th>
-               <th>{{Lang::get('architect::fields.tipus')}}</th>
-               <th>{{Lang::get('architect::fields.updated')}}</th>
-               <th>{{Lang::get('architect::fields.status')}}</th>
+               <th> {{Lang::get('backender::fields.name')}}</th>
+               <th>{{Lang::get('backender::fields.tipus')}}</th>
+               <th>{{Lang::get('backender::fields.updated')}}</th>
+               <th>{{Lang::get('backender::fields.status')}}</th>
                <th></th>
            </tr>
         </thead>

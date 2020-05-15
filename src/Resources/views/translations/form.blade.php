@@ -19,14 +19,14 @@
             <a href="{{route('translations')}}" class="btn btn-default btn-close"> <i class="fa fa-angle-left"></i> </a>
             <h1>
               <i class="fa fa-list-alt"></i>
-              {{Lang::get('architect::translates.new')}}
+              {{Lang::get('backender::translates.new')}}
             </h1>
 
             <div class="float-buttons pull-right">
 
             <div class="actions-dropdown">
               <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                {{Lang::get('architect::fields.actions')}}
+                {{Lang::get('backender::fields.actions')}}
                 <b class="caret"></b>
                 <div class="ripple-container"></div>
               </a>
@@ -35,7 +35,7 @@
                     <li>
                         <a href="{{route('translations.create')}}">
                             <i class="fa fa-plus-circle"></i>
-                            &nbsp;{{Lang::get('architect::fields.new')}}
+                            &nbsp;{{Lang::get('backender::fields.new')}}
                         </a>
                     </li>
                     @if(isset($translation))
@@ -44,11 +44,11 @@
                             class="text-danger"
                             data-toogle="delete"
                             data-ajax="{{route('translations.delete', $translation)}}"
-                            data-confirm-message="{{Lang::get('architect::datatable.continue')}}"
+                            data-confirm-message="{{Lang::get('backender::datatable.continue')}}"
                         >
                             <i class="fa fa-trash text-danger"></i>
                             &nbsp;
-                            <span class="text-danger">{{Lang::get('architect::fields.delete')}}</span>
+                            <span class="text-danger">{{Lang::get('backender::fields.delete')}}</span>
                         </a>
                     </li>
                     @endif
@@ -107,17 +107,17 @@
               <div class="field-item">
                   <div id="heading" class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                       <span class="field-type">
-                          <i class="fa fa-font"></i> {{Lang::get('architect::fields.text')}}
+                          <i class="fa fa-font"></i> {{Lang::get('backender::fields.text')}}
                       </span>
                       <span class="field-name">
-                          {{Lang::get('architect::translates.identifier')}}
+                          {{Lang::get('backender::translates.identifier')}}
                       </span>
                   </div>
 
                   <div id="collapse1" class="collapse in" aria-labelledby="heading1" aria-expanded="true" aria-controls="collapse1">
                       <div class="field-form">
                           <div class='form-group bmd-form-group'>
-                              <label class="bmd-label-floating">{{Lang::get('architect::translates.identifier')}}</label>
+                              <label class="bmd-label-floating">{{Lang::get('backender::translates.identifier')}}</label>
 
                               {!!
                                   Form::text(
@@ -141,7 +141,7 @@
                           <div class="field-item">
                               <div id="heading" class="btn btn-link" data-toggle="collapse" data-target="#collapse{{ $field['identifier'] }}" aria-expanded="true" aria-controls="collapse{{ $field['identifier'] }}">
                                   <span class="field-type">
-                                      <i class="fa fa-font"></i> {{Lang::get('architect::fields.text')}}
+                                      <i class="fa fa-font"></i> {{Lang::get('backender::fields.text')}}
                                   </span>
                                   <span class="field-name">
                                       {{ $field['name'] }}

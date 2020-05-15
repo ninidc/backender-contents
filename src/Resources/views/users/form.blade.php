@@ -45,14 +45,14 @@
                     @if(isset($user))
                     <h1>{{ $user->full_name }}</h1>
                     @else
-                    <h1>{{Lang::get('architect::user.create')}}</h1>
+                    <h1>{{Lang::get('backender::user.create')}}</h1>
                     @endif
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
-                    <label>{{Lang::get('architect::fields.email')}}</label>
+                    <label>{{Lang::get('backender::fields.email')}}</label>
                     {!!
                         Form::text(
                             'email',
@@ -69,7 +69,7 @@
 
 
                 <div class="col-md-6">
-                    <label>{{Lang::get('architect::fields.firstname')}}</label>
+                    <label>{{Lang::get('backender::fields.firstname')}}</label>
                     {!!
                         Form::text(
                             'firstname',
@@ -82,7 +82,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label>{{Lang::get('architect::fields.lastname')}}</label>
+                    <label>{{Lang::get('backender::fields.lastname')}}</label>
                     {!!
                         Form::text(
                             'lastname',
@@ -97,7 +97,7 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <label>{{Lang::get('architect::fields.password')}}</label>
+                    <label>{{Lang::get('backender::fields.password')}}</label>
                     {!!
                         Form::password(
                             'password',
@@ -108,7 +108,7 @@
                     !!}
                 </div>
                 <div class="col-md-6">
-                    <label>{{Lang::get('architect::fields.co_password')}}</label>
+                    <label>{{Lang::get('backender::fields.co_password')}}</label>
                     {!!
                         Form::password(
                             'password_confirmation',
@@ -134,7 +134,7 @@
 
                     @endphp
 
-                    <label>{{Lang::get('architect::fields.language')}}</label>
+                    <label>{{Lang::get('backender::fields.language')}}</label>
                     {!!
                         Form::select(
                             'language',
@@ -160,7 +160,7 @@
                         $roles = App\Models\Role::where('id','<=',2)->pluck('display_name', 'id')->toArray();
                       @endphp
 
-                      <label>{{Lang::get('architect::fields.role')}}</label>
+                      <label>{{Lang::get('backender::fields.role')}}</label>
                       {!!
                           Form::select(
                               'role_id',

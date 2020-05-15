@@ -12,7 +12,7 @@ class TagRepository extends BaseRepository
 {
     public function model()
     {
-        return "Modules\\Architect\\Entities\\Tag";
+        return "Backender\\Contents\\Entities\\Tag";
     }
 
     public function getDatatable()

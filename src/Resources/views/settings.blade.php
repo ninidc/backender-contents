@@ -6,8 +6,8 @@
     <div class="col-md-offset-2 col-md-8">
 
       <div class="page-title">
-        <h1>{{Lang::get('architect::settings.title')}}</h1>
-        <h3>{{Lang::get('architect::settings.subtitle')}}</h3>
+        <h1>{{Lang::get('backender::settings.title')}}</h1>
+        <h3>{{Lang::get('backender::settings.subtitle')}}</h3>
       </div>
 
       <div class="grid-items">

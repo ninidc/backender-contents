@@ -4,13 +4,13 @@
 <div class="container leftbar-page">
   <div class="col-xs-offset-2 col-xs-8 page-content">
 
-    <h3 class="card-title">{{Lang::get('architect::settings.menu')}}</h3>
-    <a href="{{route('menu.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('architect::menus.add')}}</a>
+    <h3 class="card-title">{{Lang::get('backender::settings.menu')}}</h3>
+    <a href="{{route('menu.create')}}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> &nbsp; {{Lang::get('backender::menus.add')}}</a>
 
     <table class="table" id="table" data-url="{{route('menu.data')}}">
         <thead>
            <tr>
-               <th>{{Lang::get('architect::fields.name')}}</th>
+               <th>{{Lang::get('backender::fields.name')}}</th>
                <th></th>
            </tr>
         </thead>

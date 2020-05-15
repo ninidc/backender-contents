@@ -46,7 +46,7 @@ class ContentController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::contents.index', [
+        return view('backender:contents::contents.index', [
             "typologies" => Typology::all()
         ]);
     }

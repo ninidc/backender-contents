@@ -22,9 +22,9 @@
             <h1>
               <i class="fa fa-list "></i>
               @if(isset($menu))
-                {{Lang::get('architect::menus.edit')}} "{{$menu->name or ''}}"
+                {{Lang::get('backender::menus.edit')}} "{{$menu->name or ''}}"
               @else
-                {{Lang::get('architect::menus.new')}}
+                {{Lang::get('backender::menus.new')}}
               @endif
             </h1>
 
@@ -32,7 +32,7 @@
 
             <div class="actions-dropdown">
               <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
-                {{Lang::get('architect::fields.actions')}}
+                {{Lang::get('backender::fields.actions')}}
                 <b class="caret"></b>
                 <div class="ripple-container"></div>
               </a>
@@ -41,14 +41,14 @@
                     <li>
                         <a href="{{route('menu.create')}}">
                             <i class="fa fa-plus-circle"></i>
-                            &nbsp;{{Lang::get('architect::fields.new')}}
+                            &nbsp;{{Lang::get('backender::fields.new')}}
                         </a>
                     </li>
                     <li>
                         <a href="#" class="text-danger">
                             <i class="fa fa-trash text-danger"></i>
                             &nbsp;
-                            <span class="text-danger">{{Lang::get('architect::fields.delete')}}</span>
+                            <span class="text-danger">{{Lang::get('backender::fields.delete')}}</span>
                         </a>
                     </li>
                 </ul>
@@ -74,7 +74,7 @@
 
           <div>
             <div class="form-group bmd-form-group sidebar-item">
-               <label htmlFor="name" class="bmd-label-floating">{{Lang::get('architect::fields.name')}}</label>
+               <label htmlFor="name" class="bmd-label-floating">{{Lang::get('backender::fields.name')}}</label>
                <input type="text" class="form-control"  id="name" name="name" value="{{$menu->name or ''}}" />
 
             </div>
@@ -103,7 +103,7 @@
             <div class="row">
               <ol class='sortable-list'>
                 <p class="loading-message">
-                  {{Lang::get('architect::menus.loading')}}
+                  {{Lang::get('backender::menus.loading')}}
                 </p>
               </ol>
             </div>
@@ -112,7 +112,7 @@
 
           <div class="page-row add-row-block">
             <a href="" class="btn btn-default add-new-item">
-              <i class="fa fa-plus-circle"></i> {{Lang::get('architect::menus.add_page')}}
+              <i class="fa fa-plus-circle"></i> {{Lang::get('backender::menus.add_page')}}
             </a>
           </div>
 

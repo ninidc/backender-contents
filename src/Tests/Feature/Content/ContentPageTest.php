@@ -262,7 +262,7 @@ class ContentPageTest extends TestCase
           			"children": [{
           				"type": "item",
           				"field": {
-          					"class": "Modules\\Architect\\Widgets\\Types\\ElementTable",
+          					"class": "Backender\\Contents\\Widgets\\Types\\ElementTable",
           					"rules": {
           						"required": null
           					},
@@ -282,13 +282,13 @@ class ContentPageTest extends TestCase
           					"identifier": "temp_[0,0,0]",
           					"fieldname": "Tableau principaux",
           					"fields": [{
-          						"class": "Modules\\Architect\\Fields\\Types\\Text",
+          						"class": "Backender\\Contents\\Fields\\Types\\Text",
           						"identifier": "title",
           						"type": "text",
           						"name": "Titre",
           						"value": []
           					}, {
-          						"class": "Modules\\Architect\\Fields\\Types\\Link",
+          						"class": "Backender\\Contents\\Fields\\Types\\Link",
           						"identifier": "addBtn",
           						"type": "link",
           						"name": "Ajouter Element",
