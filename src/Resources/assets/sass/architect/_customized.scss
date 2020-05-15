@@ -1,0 +1,82 @@
+//GENERAL
+$primaryColor:#2A3649;
+$secondaryColor:#146dbb;
+
+$headerTextColor:#fff;
+$headerBackgroundColor: #273544;
+$headerLogoBackgroundColor: #fff;//$headerBackgroundColor
+
+//header
+
+  #main header{
+
+    .topnav {
+
+        .topnav-top {
+            background-color: $headerBackgroundColor;//$headerBackgroundColor
+            color: $headerTextColor;//$headerTextColor
+        }
+    }
+
+    .topbar-right {
+      background-color:$headerBackgroundColor;//$headerBackgroundColor
+
+      .navbar-nav > li > .dropdown-menu {
+        background-color : $headerBackgroundColor !important;//$headerBackgroundColor
+        a{
+          color: $headerTextColor;//$headerTextColor
+          i{
+            color: $headerTextColor;//$headerTextColor
+          }
+        }
+
+      }
+      .nav{
+        li{
+          a{
+            color: $headerTextColor;//$headerTextColor
+          }
+        }
+      }
+
+      .navbar-collapse{
+        .nav a {
+          &:hover, &:active, &:focus{
+            background-color: $secondaryColor !important;//$secondaryColor
+            color: $headerTextColor !important;// $headerTextColor
+          }
+        }
+        .dropdown.open a.dropdown-toggle {
+          background-color:$secondaryColor !important;//$secondaryColor
+          color: $headerTextColor;// $headerTextColor
+        }
+      }
+
+    }
+
+    #logo-wrapper{
+      background-color:$headerLogoBackgroundColor;//$headerBackgroundColor
+    }
+
+    nav.main-nav{
+      ul {
+        li{
+          a{
+            color:$headerTextColor;//$headerTextColor
+            &:hover{
+              color: $secondaryColor;//$secondaryColor
+              border-bottom: 3px solid $secondaryColor;//$secondaryColor
+            }
+          }
+
+          &.active{
+            a{
+              color: $secondaryColor;//$secondaryColor
+              border-bottom: 3px solid $secondaryColor;//$secondaryColor
+            }
+          }
+        }
+      }
+    }
+
+  }

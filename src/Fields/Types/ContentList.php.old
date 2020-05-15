@@ -1,0 +1,24 @@
+<?php
+
+namespace Backender\Contents\Fields\Types;
+
+use Backender\Contents\Fields\Field;
+use Backender\Contents\Fields\FieldInterface;
+
+use Backender\Contents\Entities\Content;
+
+class ContentList extends Field implements FieldInterface
+{
+    public $type = 'contentlist';
+    public $icon = 'fa-th-list';
+    public $name = 'LIST';
+
+    public $rules = [
+        'required'
+    ];
+
+    public $settings = [
+        'listAllowed'
+    ];
+}
+?>
