@@ -30,7 +30,7 @@ class MenuController extends Controller
 
     public function index()
     {
-        return view('architect::menu.index');
+        return view('backender:contents::menu.index');
     }
 
     public function data()
@@ -50,14 +50,14 @@ class MenuController extends Controller
 
     public function show($id)
     {
-        return view('architect::menu.form', [
+        return view('backender:contents::menu.form', [
             'menu' => $this->menus->find($id)
         ]);
     }
 
     public function create()
     {
-        return view('architect::menu.form');
+        return view('backender:contents::menu.form');
     }
 
     public function store(CreateMenuRequest $request)

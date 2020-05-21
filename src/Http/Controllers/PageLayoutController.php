@@ -28,7 +28,7 @@ class PageLayoutController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::pagelayouts.index');
+        return view('backender:contents::pagelayouts.index');
     }
 
     public function data(Request $request)

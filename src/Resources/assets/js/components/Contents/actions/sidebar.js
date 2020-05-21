@@ -7,9 +7,8 @@ import {
 
 } from "../constants/";
 
-import {
-  saving
-} from "./";
+import router from '../../../router';
+import {saving} from "./";
 
 export function changeField(field) {
 
@@ -27,7 +26,11 @@ export function publishToogle(contentId,newStatus) {
 
       dispatch(saving(true));
 
-      axios.put('/architect/contents/' + contentId + '/publish', {
+        var route = router.route('contents.publish', {
+            'content?' : contentId
+        });
+
+      axios.put(route, {
           status : newStatus
       })
       .then((response) => {

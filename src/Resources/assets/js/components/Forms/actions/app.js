@@ -1,10 +1,11 @@
+import router from '../../../router';
+
 import {
   INIT_STATE,
   UPDATE_FIELD,
   SAVE_ERROR,
   SAVE_SUCCESS,
   SAVING
-
 } from "../constants/";
 
 export function initState(payload) {
@@ -32,7 +33,11 @@ export function updateContent(data) {
 
       dispatch(saving(true));
 
-      axios.post('/architect/styles/' + data.id + '/update', data)
+      let route = router.route('style.update', {
+          'style' : data.id
+      });
+
+      axios.post(route, data)
           .then((response) => {
               console.log('THEN',response.data);
               if(response.data.success) {

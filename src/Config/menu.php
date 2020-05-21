@@ -2,39 +2,39 @@
 
 return [
     [
-        "route" => 'dashboard',
-        "label" => 'architect::header.home',
-        "patterns" => [
-            'architect'
+        'route' => 'backender.dashboard',
+        'label' => 'backender::header.home',
+        'patterns' => [
+            'architect',
         ],
-        "roles" => []
+        'roles' => [],
     ],
 
     [
-        "route" => 'contents',
-        "label" => 'architect::header.contents',
-        "patterns" => [
-            'architect/contents*'
+        'route' => 'contents',
+        'label' => 'backender::header.contents',
+        'patterns' => [
+            'architect/contents*',
         ],
-        "roles" => []
+        'roles' => [],
     ],
 
     [
-        "route" => 'medias.index',
-        "label" => 'architect::header.media',
-        "patterns" => [
-            'architect/medias*'
+        'route' => 'medias.index',
+        'label' => 'backender::header.media',
+        'patterns' => [
+            'architect/medias*',
         ],
-        "roles" => []
+        'roles' => [],
     ],
 
     [
-        "route" => 'settings',
-        "label" => 'architect::header.configuration',
-        "patterns" => [
-            'architect/settings*'
+        'route' => 'settings',
+        'label' => 'backender::header.configuration',
+        'patterns' => [
+            'architect/settings*',
         ],
-        "roles" => [],
+        'roles' => [],
         //"permissions" => 'settings'
     ],
 ];

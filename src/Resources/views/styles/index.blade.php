@@ -1,7 +1,7 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @php
-  $styles = \Backender\Contents\Entities\Style::all();
+    $styles = \Backender\Contents\Entities\Style::all();
 @endphp
 
 @section('content')
@@ -27,8 +27,6 @@
                 </a>
             </div>
           @endforeach
-
-
         </div>
       </div>
 
@@ -37,7 +35,3 @@
 </div>
 @endsection
 
-
-@push('javascripts')
-
-@endpush

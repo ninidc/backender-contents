@@ -1,4 +1,4 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 
@@ -27,10 +27,6 @@
 
 @stop
 
-@push('plugins')
-    {{ Html::script('/modules/architect/plugins/bootbox/bootbox.min.js') }}
-    {{ Html::script('/modules/architect/js/architect.js') }}
-@endpush
 
 @push('javascripts')
 <script>
@@ -104,8 +100,6 @@
       var updateOrder = function() {
 
   			var newOrder = group.sortable("serialize").get();
-
-        console.log("update Order => ",newOrder);
 
   			$.ajax({
 	            type: 'POST',

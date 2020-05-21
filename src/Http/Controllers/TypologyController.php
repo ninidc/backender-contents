@@ -28,19 +28,19 @@ class TypologyController extends Controller
 {
     public function index()
     {
-        return view('architect::typologies.index', [
+        return view('backender:contents::typologies.index', [
             "typologies" => Typology::all()
         ]);
     }
 
     public function create()
     {
-        return view('architect::typologies.form');
+        return view('backender:contents::typologies.form');
     }
 
     public function show(Typology $typology)
     {
-        return view('architect::typologies.form', [
+        return view('backender:contents::typologies.form', [
             'typology' => $typology->load('fields', 'attrs')
         ]);
     }

@@ -283,7 +283,7 @@ class Row extends Component {
         <div className="row-container">
           <div className="row-container-header">
 
-            {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+            {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
               <div className="left-buttons">
                 { childrenIndex > 0 &&
                   <a href="" className="btn btn-link" onClick={this.onPullUpItem.bind(this)}>
@@ -299,9 +299,9 @@ class Row extends Component {
                   <i className="fa fa-columns"></i>
                 </a>
               </div>
-            }
+            } */}
 
-            {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+            {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
               <div className="right-buttons">
                 <a href="" className="btn btn-link" onClick={this.onEditClass.bind(this)}>
                   <i className="fa fa-pencil-alt"></i>
@@ -317,7 +317,7 @@ class Row extends Component {
                   </a>
                 }
               </div>
-            }
+            } */}
           </div>
 
           {this.renderColTypes()}

@@ -1,4 +1,4 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 <div class="body">
@@ -75,12 +75,7 @@
 </div>
 @endsection
 
-@push('plugins')
-	{!! Html::style('/modules/architect/plugins/dropzone/dropzone.min.css') !!}
-    {!! Html::script('/modules/architect/plugins/dropzone/dropzone.min.js') !!}
-@endpush
-
 @push('javascripts-libs')
 
-	{!! Html::script('/modules/architect/js/libs/jquery.imageUploader.js') !!}
+	{!! Html::script('/backender/contents/js/libs/jquery.imageUploader.js') !!}
 @endpush

@@ -1,10 +1,6 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
-
-
-
-
     {!!
         Form::open([
             'url' => '',
@@ -56,7 +52,7 @@
 
 
               {!!
-                  Form::submit(Lang::get('architect::fields.save'), [
+                  Form::submit(Lang::get('backender:contents::fields.save'), [
                       'class' => 'btn btn-primary'
                   ])
               !!}
@@ -140,14 +136,6 @@
     {!! Form::close() !!}
 
 @stop
-
-@push('plugins')
-    {{ Html::script('/modules/architect/plugins/datatables/datatables.min.js') }}
-    {{ HTML::style('/modules/architect/plugins/datatables/datatables.min.css') }}
-    {{ Html::script('/modules/architect/js/libs/datatabletools.js') }}
-    {{ Html::script('/modules/architect/plugins/bootbox/bootbox.min.js') }}
-    {{ Html::script('/modules/architect/js/architect.js') }}
-@endpush
 
 @push('javascripts')
 <script>

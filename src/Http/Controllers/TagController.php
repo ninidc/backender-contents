@@ -32,7 +32,7 @@ class TagController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::tags.index', [
+        return view('backender:contents::tags.index', [
             "typologies" => Typology::all(),
             "tags" => $this->tags->all()
         ]);
@@ -45,14 +45,14 @@ class TagController extends Controller
 
     public function show(Tag $tag, Request $request)
     {
-        return view('architect::tags.form', [
+        return view('backender:contents::tags.form', [
             'tag' => $tag,
         ]);
     }
 
     public function create(Request $request)
     {
-        return view('architect::tags.form');
+        return view('backender:contents::tags.form');
     }
 
     public function store(CreateTagRequest $request)

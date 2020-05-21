@@ -33,7 +33,7 @@ class TranslationController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::translations.index', [
+        return view('backender:contents::translations.index', [
             "translations" => $this->translations->all()
         ]);
     }
@@ -45,14 +45,14 @@ class TranslationController extends Controller
 
     public function show(Translation $translation, Request $request)
     {
-        return view('architect::translations.form', [
+        return view('backender:contents::translations.form', [
             'translation' => $translation,
         ]);
     }
 
     public function create(Request $request)
     {
-        return view('architect::translations.form');
+        return view('backender:contents::translations.form');
     }
 
     public function store(CreateTranslationRequest $request)
@@ -64,7 +64,7 @@ class TranslationController extends Controller
                 throw new \Exception('Error occured while saving...');
             }
 
-            return redirect(route('translations.show', $translation))->with('success', Lang::get("architect::fields.success"));
+            return redirect(route('translations.show', $translation))->with('success', Lang::get("backender:contents::fields.success"));
         } catch (\Exception $ex) {
             $error = $ex->getMessage();
         }
@@ -78,10 +78,10 @@ class TranslationController extends Controller
             $translation = dispatch_now(UpdateTranslation::fromRequest($translation, $request));
 
             if(!$translation) {
-                throw new \Exception(Lang::get("architect::fields.error"));
+                throw new \Exception(Lang::get("backender:contents::fields.error"));
             }
 
-            return redirect(route('translations.show', $translation))->with('success', Lang::get("architect::fields.success"));
+            return redirect(route('translations.show', $translation))->with('success', Lang::get("backender:contents::fields.success"));
         } catch (\Exception $ex) {
             $error = $ex->getMessage();
         }

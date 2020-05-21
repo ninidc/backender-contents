@@ -1,8 +1,6 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
-
-
   {!!
       Form::open([
           'url' => isset($language) ? route('languages.update', $language) : route('languages.store'),
@@ -58,7 +56,7 @@
 
 
               {!!
-                  Form::submit(Lang::get('architect::fields.save'), [
+                  Form::submit(Lang::get('backender:contents::fields.save'), [
                       'class' => 'btn btn-primary'
                   ])
               !!}
@@ -74,36 +72,32 @@
     </div>
 
     <div class="container rightbar-page content">
-
-
       <div class="col-xs-8 col-xs-offset-2 page-content">
         <div class="field-group">
 
-              @if($errors->any())
-                  <ul class="alert alert-danger">
-                      @foreach ($errors->all() as $error)
-                          <li >{{ $error }}</li>
-                      @endforeach
-                  </ul>
-              @endif
+                @if(isset($errors) && $errors->any())
+                    <ul class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <li >{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
 
-              @if (session('success'))
-                  <div class="alert alert-success">
-                      {{ session('success') }}
-                  </div>
-              @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-              @if (session('error'))
-                  <div class="alert alert-danger">
-                      {{ session('error') }}
-                  </div>
-              @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
 
-
-              @if(isset($language))
-                  {!! Form::hidden('_method', 'PUT') !!}
-              @endif
-
+                @if(isset($language))
+                    {!! Form::hidden('_method', 'PUT') !!}
+                @endif
 
               <div class="field-item">
                   <div id="heading" class="btn btn-link" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
@@ -209,11 +203,6 @@
     {!! Form::close() !!}
 
 @stop
-
-@push('plugins')
-    {{ Html::script('/modules/architect/plugins/bootbox/bootbox.min.js') }}
-    {{ Html::script('/modules/architect/js/architect.js') }}
-@endpush
 
 @push('javascripts-libs')
 <script>

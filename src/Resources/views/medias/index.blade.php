@@ -1,8 +1,12 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 <!-- React Component Medias/MediaEditModal -->
-<div id="media-edit-modal" languages="{{ Backender\Contents\Entities\Language::getAllCached() }}" formats="{{ json_encode(config('images.formats')) }}"></div>
+<div 
+    id="media-edit-modal" 
+    languages="{{ Backender\Contents\Entities\Language::getAllCached() }}" 
+    formats="{{ json_encode(config('images.formats')) }}"
+></div>
 
 <div class="body medias">
 
@@ -13,7 +17,7 @@
 				<div class="card-body">
 
                     <h3 class="card-title">{{Lang::get('backender::media.list')}}</h3>
-    				        <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('backender::media.all_media')}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{Lang::get('backender::media.all_media')}}</h6>
 
                     <div class="medias-dropfiles" style="cursor:pointer;">
                         <p align="center" style="pointer-events:none;">
@@ -62,17 +66,6 @@
     </div>
 </div>
 @stop
-
-@push('plugins')
-    {{ Html::script('/modules/architect/plugins/dropzone/dropzone.min.js') }}
-    {{ HTML::style('/modules/architect/plugins/dropzone/dropzone.min.css') }}
-
-    {{ Html::script('/modules/architect/plugins/datatables/datatables.min.js') }}
-    {{ HTML::style('/modules/architect/plugins/datatables/datatables.min.css') }}
-
-    {{ Html::script('/modules/architect/js/libs/datatabletools.js') }}
-    {{ Html::script('/modules/architect/js/architect.js') }}
-@endpush
 
 @push('javascripts-libs')
 <script>

@@ -7,8 +7,7 @@ import {
   changeField,
   changeSettings,
   publishToogle,
-  changeTranslation,
-  updateDefaultParameters
+  changeTranslation
 } from './../actions/';
 
 import TagManager from "./../Tags/TagManager";
@@ -181,18 +180,6 @@ class ContentSidebar extends Component {
     )
   }
 
-  handleParameterDefaultChange(index,event) {
-    event.preventDefault();
-
-    console.log("handleParameterDefaultChange ::");
-
-    const parameters = this.props.app.parameters;
-
-    parameters[index].default = event.target.value;
-
-    this.props.updateDefaultParameters(parameters);
-  }
-
   isRequired(settings) {
     if(settings !== undefined && settings != null &&
       settings['required'] !== undefined && settings['required'] != null){
@@ -202,41 +189,7 @@ class ContentSidebar extends Component {
     return true;
   }
 
-  renderParameters() {
 
-    const parameters = this.props.app.parameters;
-
-    if(parameters === undefined || parameters == null){
-        return null;
-    }
-
-    return parameters.map((item,index) => {
-
-      const required = this.isRequired(item.settings);
-
-      return (
-        <div className="form-group bmd-form-group" key={index}>
-          <label htmlFor={item.id} className="bmd-label-floating">
-            {required &&
-              <i className="fas fa-exclamation-circle"></i>
-
-            }
-            {!required &&
-              <i className="far fa-question-circle"></i>
-            }
-            &nbsp; {item.name}
-          </label>
-          <input
-            id={item.id} className="form-control"
-            value={item.default}
-            placeholder="Valeur de prévisualisation"
-            name={item.identifier}
-            onChange={this.handleParameterDefaultChange.bind(this,index)}
-          />
-        </div>
-      )
-    });
-  }
 
   render() {
 
@@ -251,9 +204,9 @@ class ContentSidebar extends Component {
             { this.props.app.status == 1 &&
               <div className="publish-form sidebar-item">
                   <i className="fa fa-circle text-success"></i> {Lang.get('fields.published')} <br/>
-                  {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                  {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                     <a className="btn btn-default" href="" onClick={this.handleUnpublish.bind(this)}> {Lang.get('fields.unpublish')} </a>
-                  }
+                  {/* } */}
                   <p className="field-help">{moment(this.props.app.content.published_at).format('LLLL')}</p>
               </div>
             }
@@ -261,23 +214,15 @@ class ContentSidebar extends Component {
             {this.props.app.status == 0 &&
               <div className="publish-form sidebar-item">
                   <i className="fa fa-circle text-warning"></i> {Lang.get('fields.draft')} <br/>
-                  {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                  {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                     <a className="btn btn-success" href=""  onClick={this.handlePublish.bind(this)}> {Lang.get('fields.publish')} </a>
-                  }
+                  {/* } */}
                   <p className="field-help"></p>
               </div>
             }
 
             <hr/>
 
-          </div>
-        }
-
-        {isPage &&
-          <div>
-            <h3>Parametres</h3>
-            {this.renderParameters()}
-            <hr/>
           </div>
         }
 
@@ -293,7 +238,7 @@ class ContentSidebar extends Component {
             <div className="form-group bmd-form-group sidebar-item">
                <label htmlFor="parent_id" className="bmd-label-floating">{Lang.get('fields.parent_page')}</label>
 
-               {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+               {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                  <select className="form-control" id="parent_id" name="parent_id" value={this.props.parent_id}  onChange={this.handleChange}>
                       <option value="">---</option>
                      {
@@ -302,8 +247,8 @@ class ContentSidebar extends Component {
                        })
                      }
                  </select>
-               }
-               {architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+               {/* } */}
+               {/* {architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                  <select disabled="true" className="form-control" id="parent_id" name="parent_id" value={this.props.parent_id}  onChange={this.handleChange}>
                       <option value="">---</option>
                      {
@@ -312,7 +257,7 @@ class ContentSidebar extends Component {
                        })
                      }
                  </select>
-               }
+               {/* } */}
 
             </div>
             <hr/>
@@ -350,7 +295,7 @@ class ContentSidebar extends Component {
           </div>
         }
 
-        {this.props.app.settings !== undefined && !architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+        {/* {this.props.app.settings !== undefined && !architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
 
           <div>
             <hr/>
@@ -362,7 +307,7 @@ class ContentSidebar extends Component {
 
 
           </div>
-        }
+        {/* } */}
 
 
       </div>
@@ -392,10 +337,7 @@ const mapDispatchToProps = dispatch => {
         },
         changeTranslation : (field) => {
             return dispatch(changeTranslation(field));
-        },
-        updateDefaultParameters : (parameters) => {
-            return dispatch(updateDefaultParameters(parameters));
-        },
+        }
     }
 }
 

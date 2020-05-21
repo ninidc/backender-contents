@@ -4,14 +4,13 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./reducers/index";
 import { connect } from 'react-redux'
-
 import ContentForm from './ContentForm';
-
 import configureStore from './configureStore'
 
 let store = configureStore();
 
 if (document.getElementById('content-form')) {
+    
     var element = document.getElementById('content-form');
     var typology = element.getAttribute('typology');
     var users = element.getAttribute('users');

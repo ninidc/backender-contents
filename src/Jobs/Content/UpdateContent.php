@@ -2,29 +2,25 @@
 
 namespace Backender\Contents\Jobs\Content;
 
-use Backender\Contents\Http\Requests\Content\CreateContentRequest;
-use Backender\Contents\Entities\Content;
-use Backender\Contents\Entities\Page;
 use Backender\Contents\Entities\Category;
-use Backender\Contents\Entities\Tag;
-use Backender\Contents\Entities\ContentField;
+use Backender\Contents\Entities\Content;
 use Backender\Contents\Entities\Language;
 use Backender\Contents\Entities\Menu;
-use Backender\Contents\Tasks\Urls\UpdateUrlsContent;
-
+use Backender\Contents\Entities\Page;
+use Backender\Contents\Entities\Tag;
 use Backender\Contents\Fields\FieldConfig;
 use Backender\Contents\Fields\Types\Text as TextField;
+use Backender\Contents\Http\Requests\Content\CreateContentRequest;
+use Backender\Contents\Tasks\Urls\UpdateUrlsContent;
 use Cache;
-
-use Modules\Extranet\Jobs\Validation\ElementsPageRouteValidation;
 
 class UpdateContent
 {
-     public function __construct(Content $content, $attributes)
-     {
-         $this->content = $content;
-         $this->languages = Language::getAllCached();
-         $this->attributes = array_only($attributes, [
+    public function __construct(Content $content, $attributes)
+    {
+        $this->content = $content;
+        $this->languages = Language::getAllCached();
+        $this->attributes = array_only($attributes, [
              'typology_id',
              'category_id',
              'parent_id',
@@ -35,9 +31,9 @@ class UpdateContent
              'translations',
              'is_page',
              'settings',
-             'parameters'
+             'parameters',
          ]);
-     }
+    }
 
     public static function fromRequest(Content $content, CreateContentRequest $request)
     {
@@ -58,24 +54,14 @@ class UpdateContent
         $this->saveLanguages();
         $this->saveFields();
 
-        if((isset($this->attributes['is_page'])) && $this->attributes['is_page'] == 1) {
+        if ((isset($this->attributes['is_page'])) && $this->attributes['is_page'] == 1) {
             $this->savePage();
-        }
-
-        $this->content->routesParameters()->detach();
-        if((isset($this->attributes['parameters'])) && count($this->attributes['parameters'])>0) {
-          foreach ($this->attributes['parameters'] as $parameter) {
-            $this->content->routesParameters()->attach($parameter['id'],[
-              'preview_default_value' => $parameter['default'],
-              'settings' => json_encode($parameter['settings'])
-            ]);
-          }
         }
 
         // RESET CACHE MENU
         $menu = Menu::hasContent($this->content)->first();
-        if($menu) {
-            Cache::forget(sprintf("menu_%s", $menu->name));
+        if ($menu) {
+            Cache::forget(sprintf('menu_%s', $menu->name));
         }
 
         // Refresh relations
@@ -87,18 +73,15 @@ class UpdateContent
         // Elasticsearch indexation
         $this->content->index();
 
-        // Check elements configuration
-        ElementsPageRouteValidation::dispatch();
-
         return $this->content;
     }
 
     // FIXME : Optimize this !!!
     public function getFieldObject($type, $fieldObjects)
     {
-        foreach($fieldObjects as $f) {
-            if($type == $f["type"]) {
-                return new $f['class'];
+        foreach ($fieldObjects as $f) {
+            if ($type == $f['type']) {
+                return new $f['class']();
             }
         }
 
@@ -110,18 +93,17 @@ class UpdateContent
         $fieldObjects = FieldConfig::get();
         $this->content->fields()->delete();
 
-        foreach($this->attributes["fields"] as $field) {
-            $values = isset($field["value"]) ? $field["value"] : null;
-            $identifier = isset($field["identifier"]) ? $field["identifier"] : null;
-            $type = isset($field["type"]) ? $field["type"] : null;
+        foreach ($this->attributes['fields'] as $field) {
+            $values = isset($field['value']) ? $field['value'] : null;
+            $identifier = isset($field['identifier']) ? $field['identifier'] : null;
+            $type = isset($field['type']) ? $field['type'] : null;
 
-            if($values && $type && $identifier) {
-
+            if ($values && $type && $identifier) {
                 $_field = $this
                     ->getFieldObject($type, $fieldObjects); // <= Better into FieldObject like FieldHandler ?
 
-                if(!$_field) {
-                    throw new \Exception('Field ' . $identifier . ' (type: '.$type.') not exist');
+                if (!$_field) {
+                    throw new \Exception('Field '.$identifier.' (type: '.$type.') not exist');
                 }
 
                 $_field->save($this->content, $identifier, $values, $this->languages);
@@ -133,13 +115,12 @@ class UpdateContent
         }
     }
 
-
     public function saveCategories()
     {
         $this->content->categories()->detach();
         $category = isset($this->attributes['category_id']) ? Category::find($this->attributes['category_id']) : null;
 
-        if($category) {
+        if ($category) {
             $this->content->categories()->attach($category);
         }
     }
@@ -148,11 +129,11 @@ class UpdateContent
     {
         $this->content->languages()->detach();
 
-        if(isset($this->attributes['translations'])) {
-            foreach($this->attributes['translations'] as $iso => $value) {
+        if (isset($this->attributes['translations'])) {
+            foreach ($this->attributes['translations'] as $iso => $value) {
                 $language = $value ? Language::where('iso', $iso)->first() : null;
 
-                if($language) {
+                if ($language) {
                     $this->content->languages()->attach($language);
                 }
             }
@@ -164,49 +145,49 @@ class UpdateContent
         $this->content->tags()->detach();
         $tags = isset($this->attributes['tags']) ? Tag::whereIn('id', collect($this->attributes['tags'])->pluck('id')->toArray())->get() : null;
 
-        if($tags) {
+        if ($tags) {
             $this->content->tags()->attach($tags);
         }
 
         $this->content->load('tags');
     }
 
-    function savePageBuilderFields(&$nodes) {
-
-        if($nodes) {
+    public function savePageBuilderFields(&$nodes)
+    {
+        if ($nodes) {
             foreach ($nodes as $key => $node) {
-                if(isset($node['children'])) {
+                if (isset($node['children'])) {
                     $nodes[$key]['children'] = $this->savePageBuilderFields($node['children']);
                 } else {
-                    if(isset($node['field'])) {
+                    if (isset($node['field'])) {
                         $field = $node['field'];
                         $type = isset($field['type']) ? $field['type'] : null;
 
-                        switch($type) {
-                            case "widget":
+                        switch ($type) {
+                            case 'widget':
                                 $fieldName = uniqid('pagewidget_');
                                 $fields = isset($field['fields']) ? $field['fields'] : null;
 
-                                (new $field['class'])->save($this->content, $fieldName, $fields);
+                                (new $field['class']())->save($this->content, $fieldName, $fields);
 
                                 $nodes[$key]['field']['fieldname'] = $fieldName;
                                 unset($nodes[$key]['field']['fields']);
                                 unset($nodes[$key]['field']['value']);
                             break;
 
-                            case "widget-list":
+                            case 'widget-list':
                                 $widgets = isset($field['value']) ? $field['value'] : null;
-                                if($widgets){
-                                    foreach($widgets as $k => $widget) {
+                                if ($widgets) {
+                                    foreach ($widgets as $k => $widget) {
                                         $fieldName = uniqid('pagewidget_');
                                         $fields = isset($widget['fields']) ? $widget['fields'] : null;
                                         $nodes[$key]['field']['value'][$k]['fieldname'] = $fieldName;
 
-                                        (new $widget['class'])->save($this->content, $fieldName, $fields);
+                                        (new $widget['class']())->save($this->content, $fieldName, $fields);
 
-                                        foreach($widget["fields"] as $k2 => $v) {
-                                            if(isset($nodes[$key]['field']['value'][$k]["fields"][$k2]["value"])) {
-                                                unset($nodes[$key]['field']['value'][$k]["fields"][$k2]["value"]);
+                                        foreach ($widget['fields'] as $k2 => $v) {
+                                            if (isset($nodes[$key]['field']['value'][$k]['fields'][$k2]['value'])) {
+                                                unset($nodes[$key]['field']['value'][$k]['fields'][$k2]['value']);
                                             }
                                         }
                                     }
@@ -217,13 +198,12 @@ class UpdateContent
                                 $fieldName = uniqid('pagefield_');
                                 $fieldValue = isset($field['value']) ? $field['value'] : null;
 
-                                (new $field['class'])->save($this->content, $fieldName, $fieldValue, $this->languages);
+                                (new $field['class']())->save($this->content, $fieldName, $fieldValue, $this->languages);
 
                                 $nodes[$key]['field']['fieldname'] = $fieldName;
                                 unset($nodes[$key]['field']['value']);
                             break;
                         }
-
                     }
                 }
             }
@@ -232,20 +212,19 @@ class UpdateContent
         return $nodes;
     }
 
-
     public function savePage()
     {
         $this->content->fields()->delete();
         $this->content->page()->delete();
 
-        foreach($this->attributes["fields"] as $field) {
+        foreach ($this->attributes['fields'] as $field) {
             $fieldValue = isset($field['value']) ? $field['value'] : null;
-            (new TextField)->save($this->content, $field["identifier"], $fieldValue, $this->languages);
+            (new TextField())->save($this->content, $field['identifier'], $fieldValue, $this->languages);
         }
 
         return Page::create([
             'definition' => json_encode($this->savePageBuilderFields($this->attributes['page'])),
-            'content_id' => $this->content->id
+            'content_id' => $this->content->id,
         ]);
     }
 }

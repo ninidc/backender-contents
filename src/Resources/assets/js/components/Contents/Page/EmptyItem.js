@@ -20,11 +20,11 @@ class EmptyItem extends Component {
 
     return (
       <div className="row empty-item">
-          {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+          {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
             <a href="" className="btn btn-link" onClick={this.onSelectItem.bind(this)}>
               <i className="fa fa-plus"></i>
             </a>
-          }
+          {/* } */}
       </div>
     );
   }

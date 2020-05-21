@@ -2,16 +2,13 @@
 
 namespace Backender\Contents\Jobs\Content;
 
-use Backender\Contents\Http\Requests\Content\DeleteContentRequest;
 use Backender\Contents\Entities\Content;
 use Backender\Contents\Entities\ContentField;
 use Backender\Contents\Entities\Page;
-use Modules\Extranet\Entities\RouteParameter;
-
-use Illuminate\Support\Facades\Schema;
-
+use Backender\Contents\Http\Requests\Content\DeleteContentRequest;
 use Backender\Contents\Tasks\Urls\UpdateUrlsContent;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DeleteContent
 {
@@ -37,10 +34,10 @@ class DeleteContent
         $contents = Content::where('parent_id', $this->content->id)->get();
 
         // Update URLS of the contents
-        if($contents->isNotEmpty()) {
-            foreach($contents as $content) {
+        if ($contents->isNotEmpty()) {
+            foreach ($contents as $content) {
                 $content->update([
-                    'parent_id' => $this->content->parent_id
+                    'parent_id' => $this->content->parent_id,
                 ]);
 
                 (new UpdateUrlsContent($content))->run();
@@ -56,13 +53,13 @@ class DeleteContent
         ContentField::where('content_id', $this->content->id)->delete();
         Page::where('content_id', $this->content->id)->delete();
 
-        DB::table('contents_routes_parameters')->where('content_id',$this->content->id)->delete();
-        DB::table('contents_languages')->where('content_id',$this->content->id)->delete();
-        DB::table('contents_categories')->where('content_id',$this->content->id)->delete();
-        DB::table('contents_tags')->where('content_id',$this->content->id)->delete();
+        DB::table('contents_routes_parameters')->where('content_id', $this->content->id)->delete();
+        DB::table('contents_languages')->where('content_id', $this->content->id)->delete();
+        DB::table('contents_categories')->where('content_id', $this->content->id)->delete();
+        DB::table('contents_tags')->where('content_id', $this->content->id)->delete();
         DB::table('urls')
-          ->where('entity_id',$this->content->id)
-          ->where('entity_type','Backender\Contents\Entities\Content')
+          ->where('entity_id', $this->content->id)
+          ->where('entity_type', 'Backender\Contents\Entities\Content')
           ->delete();
 
         // Delete content

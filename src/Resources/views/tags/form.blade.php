@@ -1,4 +1,4 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 
@@ -50,7 +50,7 @@
 
 
               {!!
-                  Form::submit(Lang::get('architect::fields.save'), [
+                  Form::submit(Lang::get('backender:contents::fields.save'), [
                       'class' => 'btn btn-primary'
                   ])
               !!}

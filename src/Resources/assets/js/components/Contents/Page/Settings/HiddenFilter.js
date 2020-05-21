@@ -34,47 +34,52 @@ class HiddenFilter extends Component {
 
     var self = this;
 
-    axios.get(ASSETS+'/architect/extranet/filters')
-      .then(function (response) {
-          if(response.status == 200
-              && response.data.data !== undefined
-              && response.data.data.length > 0)
-          {
 
-            ////console.log("original categories => ",response.data.data);
+    // var route = router.route('contents.publish', {
+    //     'content?' : contentId
+    // });
 
-            var filters = [{
-              value:'',
-              name:'----',
-              values : []
-            }];
+    // axios.get(ASSETS+'/architect/extranet/filters')
+    //   .then(function (response) {
+    //       if(response.status == 200
+    //           && response.data.data !== undefined
+    //           && response.data.data.length > 0)
+    //       {
 
-            for(var i=0; i < response.data.data.length ; i++){
-              var filter = response.data.data[i];
+    //         ////console.log("original categories => ",response.data.data);
 
-              var parameterId = self.getParameterId(filter.name);
-              //console.log("getParameterId :: ",filter.name,parameterId);
+    //         var filters = [{
+    //           value:'',
+    //           name:'----',
+    //           values : []
+    //         }];
 
-              //if parameter exist then add filter. Filter need to be added to DDBB
-              if(parameterId != null){
-                filters.push({
-                  value : filter.name,
-                  name : filter.label,
-                  values : filter.values,
-                  id : parameterId
-                });
-              }
-            }
+    //         for(var i=0; i < response.data.data.length ; i++){
+    //           var filter = response.data.data[i];
 
-            self.setState({
-              filters : filters
-            });
+    //           var parameterId = self.getParameterId(filter.name);
+    //           //console.log("getParameterId :: ",filter.name,parameterId);
 
-          }
+    //           //if parameter exist then add filter. Filter need to be added to DDBB
+    //           if(parameterId != null){
+    //             filters.push({
+    //               value : filter.name,
+    //               name : filter.label,
+    //               values : filter.values,
+    //               id : parameterId
+    //             });
+    //           }
+    //         }
 
-      }).catch(function (error) {
-         console.log(error);
-      });
+    //         self.setState({
+    //           filters : filters
+    //         });
+
+    //       }
+
+    //   }).catch(function (error) {
+    //      console.log(error);
+    //   });
   }
 
   /**

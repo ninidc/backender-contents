@@ -17,11 +17,8 @@ use Backender\Contents\Jobs\Media\DeleteMedia;
 use Backender\Contents\Jobs\Media\CreateMedia;
 use Backender\Contents\Jobs\Media\UpdateMedia;
 
-use Illuminate\Support\Facades\Bus;
-
 use Backender\Contents\Entities\Media;
 use Lang;
-
 use Session;
 
 class MediaController extends Controller
@@ -33,7 +30,7 @@ class MediaController extends Controller
 
     public function index()
     {
-        return view('architect::medias.index');
+        return view('backender:contents::medias.index');
     }
 
     public function data()
@@ -68,7 +65,7 @@ class MediaController extends Controller
         if(dispatch_now(UpdateMedia::fromRequest($media, $request))) {
             return response()->json([
                 'success' => true,
-                'message' => Lang::get("architect::fields.success")
+                'message' => Lang::get("backender:contents::fields.success")
             ]);
         }
 
@@ -83,14 +80,14 @@ class MediaController extends Controller
             return $request->ajax()
                 ? response()->json([
                     'success' => true,
-                    'message' => Lang::get("architect::fields.success")
+                    'message' => Lang::get("backender:contents::fields.success")
                 ]) : redirect()->route('admin.content.medias.index');
         }
 
         return $request->ajax()
             ? response()->json([
                 'error' => true,
-                'message' => Lang::get("architect::fields.error")
+                'message' => Lang::get("backender:contents::fields.error")
             ], 500)
             : redirect()->route('admin.content.medias.index');
     }

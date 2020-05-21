@@ -2,22 +2,21 @@
 
 namespace Backender\Contents\Entities;
 
-use Illuminate\Database\Eloquent\Model;
-
-use Kalnoy\Nestedset\NodeTrait;
-use Illuminate\Database\Eloquent\Builder;
-
-use Backender\Contents\Entities\Language;
-
 use Backender\Contents\Traits\HasFields;
 use Backender\Contents\Traits\HasUrl;
 use Backender\Contents\Traits\Searchable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
 
 class Content extends Model
 {
-    use HasFields,
-        HasUrl,
-        NodeTrait,
+    use HasFields;
+    use
+        HasUrl;
+    use
+        NodeTrait;
+    use
         Searchable;
 
     const STATUS_PUBLISHED = 1;
@@ -27,7 +26,7 @@ class Content extends Model
 
     protected $appends = [
         'title',
-        'url'
+        'url',
     ];
 
     /**
@@ -49,7 +48,7 @@ class Content extends Model
         'parent_id',
         'is_page',
         'published_at',
-        'settings'
+        'settings',
     ];
 
     /**
@@ -58,7 +57,7 @@ class Content extends Model
      * @var array
      */
     protected $hidden = [
-        'deleted_at'
+        'deleted_at',
     ];
 
     /**
@@ -70,7 +69,7 @@ class Content extends Model
         'created_at',
         'updated_at',
         'deleted_at',
-        'published_at'
+        'published_at',
     ];
 
     /*
@@ -78,7 +77,7 @@ class Content extends Model
      */
     public function typology()
     {
-        return $this->hasOne('\Backender\Contents\Entities\Typology', "id", "typology_id");
+        return $this->hasOne('\Backender\Contents\Entities\Typology', 'id', 'typology_id');
     }
 
     public function tags()
@@ -93,7 +92,7 @@ class Content extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('\Backender\Contents\Entities\Category', 'contents_categories',  'content_id', 'category_id');
+        return $this->belongsToMany('\Backender\Contents\Entities\Category', 'contents_categories', 'content_id', 'category_id');
     }
 
     public function page()
@@ -103,34 +102,7 @@ class Content extends Model
 
     public function parent()
     {
-    	  return $this->hasOne('\Backender\Contents\Entities\Content', 'id', 'parent_id');
-    }
-
-    public function routesParameters()
-    {
-        return $this->belongsToMany('\Modules\Extranet\Entities\RouteParameter', 'contents_routes_parameters',  'content_id', 'route_parameter_id')
-          ->withPivot('preview_default_value','settings');
-    }
-
-    /*
-    *   Return route parametesr with settings processed.
-    */
-    public function getRouteParametersWithSettings()
-    {
-        $parameters = $this->routesParameters()->get();
-        if(isset($parameters)){
-            $resultParameters = [];
-            foreach($parameters as $parameter){
-              $resultParameters[$parameter->identifier] = [
-                "identifier" => $parameter->identifier,
-                "required" => $parameter->isRequired()
-              ];
-            }
-            return $resultParameters;
-        }
-        else {
-          return null;
-        };
+        return $this->hasOne('\Backender\Contents\Entities\Content', 'id', 'parent_id');
     }
 
     public function isStatusPublished()
@@ -141,37 +113,36 @@ class Content extends Model
     public function getStringStatus()
     {
         $status = [
-            1 => trans('architect::contents.published'),
-            0 => trans('architect::contents.draft'),
-            self::STATUS_PUBLISHED => trans('architect::contents.published'), //'Publicat',//__('contents.status.published'),
-            self::STATUS_DRAFT => trans('architect::contents.draft') //'Esborrany' //__('contents.status.draft')
+            1 => trans('backender::contents.published'),
+            0 => trans('backender::contents.draft'),
+            self::STATUS_PUBLISHED => trans('backender::contents.published'), //'Publicat',//__('contents.status.published'),
+            self::STATUS_DRAFT => trans('backender::contents.draft'), //'Esborrany' //__('contents.status.draft')
         ];
 
         return isset($status[$this->status]) ? $status[$this->status] : null;
     }
-
 
     public function getTitleAttribute($language = null)
     {
         $defaultLanguage = $language ? $language : Language::getDefault();
         $defaultLanguageId = isset($defaultLanguage->id) ? $defaultLanguage->id : null;
 
-        if($this->page) {
+        if ($this->page) {
             return $this->getFieldValue('title', $defaultLanguageId);
         }
 
-        if(!$this->fields || !$this->typology) {
+        if (!$this->fields || !$this->typology) {
             return null;
         }
 
         $index = $this->typology->getIndexField();
 
-        if(!$index) {
+        if (!$index) {
             return null;
         }
 
-        foreach($this->fields as $field) {
-            if($field->name == $index) {
+        foreach ($this->fields as $field) {
+            if ($field->name == $index) {
                 return $this->getFieldValue($index, $defaultLanguageId);
             }
         }
@@ -181,7 +152,7 @@ class Content extends Model
 
     public static function getTree($id)
     {
-      return Content::descendantsOf($id)->toTree($id);
+        return Content::descendantsOf($id)->toTree($id);
     }
 
     public static function getTreeIds($id)
@@ -189,50 +160,48 @@ class Content extends Model
         $ids = [];
         $contents = Content::descendantsOf($id);
 
-        foreach($contents as $content){
+        foreach ($contents as $content) {
             $ids[] = $content->id;
         }
 
         return $ids;
     }
 
-
     public function getSettings()
     {
-        if($this->settings && $this->settings != null) {
-          return json_decode($this->settings,true);
+        if ($this->settings && $this->settings != null) {
+            return json_decode($this->settings, true);
         }
 
         return null;
     }
 
-
     /*
      *  Scopes
      */
-     public function scopeField($query, $name, $value)
-     {
-         return $query->where([
+    public function scopeField($query, $name, $value)
+    {
+        return $query->where([
              'name' => $name,
              'value' => $value,
          ]);
-     }
+    }
 
-     public function scopeTypologyId($query, $typologyId)
-     {
-         $typologyId = $typologyId && !is_array($typologyId) ? array($typologyId) : $typologyId;
+    public function scopeTypologyId($query, $typologyId)
+    {
+        $typologyId = $typologyId && !is_array($typologyId) ? [$typologyId] : $typologyId;
 
-         return $typologyId ? $query->whereIn('typology_id', $typologyId) : $query;
-     }
+        return $typologyId ? $query->whereIn('typology_id', $typologyId) : $query;
+    }
 
-     public function scopeCategoryId($query, $categoryId)
-     {
-         $categoryId = $categoryId && !is_array($categoryId) ? array($categoryId) : $categoryId;
+    public function scopeCategoryId($query, $categoryId)
+    {
+        $categoryId = $categoryId && !is_array($categoryId) ? [$categoryId] : $categoryId;
 
-         return $categoryId ? $query->whereHas('categories', function($q) use($categoryId) {
-             $q->whereIn('category_id', $categoryId);
-         }) : $query;
-     }
+        return $categoryId ? $query->whereHas('categories', function ($q) use ($categoryId) {
+            $q->whereIn('category_id', $categoryId);
+        }) : $query;
+    }
 
     public function scopeIsPublished(Builder $query)
     {
@@ -256,16 +225,16 @@ class Content extends Model
 
     public function scopeLanguageIso(Builder $query, $acceptLang)
     {
-        return $acceptLang ? $query->whereHas('languages', function($q) use($acceptLang) {
+        return $acceptLang ? $query->whereHas('languages', function ($q) use ($acceptLang) {
             $q->where('iso', $acceptLang);
         }) : $query;
     }
 
     public function scopeByTagsIds(Builder $query, $tagsId)
     {
-        $tagsId = $tagsId && !is_array($tagsId) ? array($tagsId) : $tagsId;
+        $tagsId = $tagsId && !is_array($tagsId) ? [$tagsId] : $tagsId;
 
-        return $tagsId ? $query->whereHas('tags', function($q) use($tagsId) {
+        return $tagsId ? $query->whereHas('tags', function ($q) use ($tagsId) {
             $q->whereIn('tag_id', $tagsId);
         }) : $query;
     }

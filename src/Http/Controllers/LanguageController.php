@@ -33,7 +33,7 @@ class LanguageController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::languages.index', [
+        return view('backender:contents::languages.index', [
             "languages" => $this->languages->all()
         ]);
     }
@@ -45,14 +45,14 @@ class LanguageController extends Controller
 
     public function show(Language $language, Request $request)
     {
-        return view('architect::languages.form', [
+        return view('backender:contents::languages.form', [
             'language' => $language,
         ]);
     }
 
     public function create(Request $request)
     {
-        return view('architect::languages.form');
+        return view('backender:contents::languages.form');
     }
 
     public function store(CreateLanguageRequest $request)

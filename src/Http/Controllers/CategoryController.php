@@ -35,7 +35,7 @@ class CategoryController extends Controller
 
     public function index(Request $request)
     {
-        return view('architect::categories.index', [
+        return view('backender:contents::categories.index', [
             "typologies" => Typology::all(),
             "categories" => $this->categories->all()
         ]);
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
     public function show(Category $category, Request $request)
     {
-        return view('architect::categories.form', [
+        return view('backender:contents::categories.form', [
             'category' => $category,
              "categories" => $this->categories->getTreeWithHyphens()
         ]);
@@ -58,7 +58,7 @@ class CategoryController extends Controller
 
     public function create(Request $request)
     {
-        return view('architect::categories.form', [
+        return view('backender:contents::categories.form', [
                 "categories" => $this->categories->getTreeWithHyphens()
             ]);
     }

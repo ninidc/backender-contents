@@ -2,35 +2,18 @@
 
 namespace Backender\Contents\Tests\Feature\Content;
 
-use Backender\Contents\Tests\TestCase;
-
-use Backender\Contents\Repositories\ContentRepository;
-
 use Backender\Contents\Entities\Content;
-use Backender\Contents\Entities\Typology;
-use Backender\Contents\Entities\Language;
 use Backender\Contents\Entities\ContentField;
+use Backender\Contents\Entities\Language;
 use Backender\Contents\Entities\Page;
-use Modules\Extranet\Entities\RouteParameter;
-use Modules\Extranet\Entities\ContentLa;
-
-use Backender\Contents\Jobs\Typology\CreateTypology;
-use Backender\Contents\Jobs\Typology\UpdateTypology;
-
 use Backender\Contents\Jobs\Content\CreateContent;
-use Backender\Contents\Jobs\Content\UpdateContent;
 use Backender\Contents\Jobs\Content\DeleteContent;
-
-use Backender\Contents\Jobs\Category\CreateCategory;
-use Backender\Contents\Jobs\Category\UpdateCategory;
-
+use Backender\Contents\Tests\TestCase;
 use Illuminate\Support\Facades\DB;
 
 class ContentPageTest extends TestCase
 {
-
     private $attributes = [
-
         'page' => [
             'status' => 0,
             'typology_id' => null,
@@ -42,15 +25,14 @@ class ContentPageTest extends TestCase
                 'ca' => true,
             ],
             'fields' => [
-
                 [
                     'identifier' => 'title',
                     'type' => 'text',
                     'value' => [
                         'es' => 'Mi pagina (Spanish)',
                         'en' => 'My page (English)',
-                        'ca' => 'Mi pagine (Catala)'
-                    ]
+                        'ca' => 'Mi pagine (Catala)',
+                    ],
                 ],
 
                 [
@@ -59,10 +41,9 @@ class ContentPageTest extends TestCase
                     'value' => [
                         'es' => 'mi-pagina-spanish',
                         'en' => 'my-page-english',
-                        'ca' => 'mi-pagine-catala'
-                    ]
+                        'ca' => 'mi-pagine-catala',
+                    ],
                 ],
-
 
                 [
                     'identifier' => 'description',
@@ -71,10 +52,10 @@ class ContentPageTest extends TestCase
                         'es' => 'Lorem ipsum...',
                         'en' => 'Lorem ipsum...',
                         'ca' => 'Lorem ipsum...',
-                    ]
+                    ],
                 ],
-            ]
-        ]
+            ],
+        ],
     ];
 
     /*
@@ -100,7 +81,6 @@ class ContentPageTest extends TestCase
         // 2. Test if content is created
         $this->assertTrue(Content::first() ? true : false);
     }
-
 
     /*
      *  [TEST] When we remove parent page
@@ -131,7 +111,6 @@ class ContentPageTest extends TestCase
         // 6. Test page parent_id
         $this->assertTrue($page3->parent_id == $page1->id ? true : false);
 
-
         // 5. Test URLS
         // foreach($page2->urls as $url) {
         //     $language = Language::find($url->language_id);
@@ -147,9 +126,7 @@ class ContentPageTest extends TestCase
         //
         //     $this->assertSame($excepted, $actual, $message);
         // }
-
     }
-
 
     /*
      *  [TEST] Field contents really remove
@@ -167,8 +144,8 @@ class ContentPageTest extends TestCase
             'identifier' => 'content',
             'type' => 'contents',
             'value' => [
-                ['id' => $pageId]
-            ]
+                ['id' => $pageId],
+            ],
         ];
         $page2 = $this->createPage($attributes);
 
@@ -185,7 +162,6 @@ class ContentPageTest extends TestCase
 
     public function testRemovePage()
     {
-
         /*
         $attributes = $this->attributes['page'];
         $attributes['fields'][] = [
@@ -301,7 +277,6 @@ class ContentPageTest extends TestCase
           	"parameters": []
           }');
 
-
         $page = $this->createPage($attributes);
 
         $pageId = $page->id;
@@ -309,10 +284,9 @@ class ContentPageTest extends TestCase
         // Remove page
         (new DeleteContent($page))->handle();
 
-        $this->assertEquals(0, ContentField::where('content_id',$pageId)->count());
-        $this->assertEquals(0, Page::where('content_id',$pageId)->count());
-        $this->assertEquals(0, Content::where('id',$pageId)->count());
-        $this->assertEquals(0, DB::table('contents_languages')->where('content_id',$pageId)->count());
+        $this->assertEquals(0, ContentField::where('content_id', $pageId)->count());
+        $this->assertEquals(0, Page::where('content_id', $pageId)->count());
+        $this->assertEquals(0, Content::where('id', $pageId)->count());
+        $this->assertEquals(0, DB::table('contents_languages')->where('content_id', $pageId)->count());
     }
-
 }

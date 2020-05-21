@@ -11,6 +11,7 @@ import {
 } from "../constants/";
 
 import axios from 'axios';
+import router from '../../../router';
 
 export function initEditItem(payload) {
   return { type: INIT_EDIT_ITEM_MODAL, payload : payload };
@@ -110,7 +111,6 @@ function pushElements(elementsFrom, fileElementsTo, formElementsTo, tableElement
 export function loadElements() {
 
   return (dispatch) => {
-
     axios.get(ASSETS+'architect/elements/list')
       .then(function (response) {
           if(response.status == 200

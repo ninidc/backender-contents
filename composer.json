@@ -38,7 +38,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Backender\\Contents\\": ""
+            "Backender\\Contents\\": "src/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "mkdir -p ../../../public/backender",
+            "ln -sf ./src/public ../../../public/backender/contents"
+        ]
     }
 }

@@ -77,8 +77,7 @@ class ContentBar extends Component {
           */
           fields : app.fields,
           is_page : true,
-          page: app.layout,
-          parameters : app.parameters
+          page: app.layout
         };
       }
       else {
@@ -183,28 +182,7 @@ class ContentBar extends Component {
     }
   }
 
-  getPageParams() {
-    const isPage = this.props.app.typology ? false : true;
 
-    if(!isPage) {
-      return "";
-    }
-    else{
-
-      const params = this.props.app.parameters;
-      if(params === undefined || params.length == 0)
-        return "";
-
-      var result = "?";
-      var first = true;
-      for(var i=0;i<params.length;i++){
-        result += (!first? '&':'')+params[i].identifier+"="+params[i].default;
-        first = false;
-      }
-    }
-
-    return result;
-  }
 
   render() {
 
@@ -218,8 +196,6 @@ class ContentBar extends Component {
     );
     const content = this.props.app.content;
     const saving = this.props.app.saving;
-
-    const params = this.getPageParams();
 
     return (
       <div className="page-bar">
@@ -240,7 +216,7 @@ class ContentBar extends Component {
               <div className="float-buttons pull-right">
 
 
-                {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
 
                   <div className="actions-dropdown">
                     <a href="#" className="dropdown-toggle btn btn-default" data-toggle="dropdown" aria-expanded="false">
@@ -248,7 +224,8 @@ class ContentBar extends Component {
                       <b className="caret"></b>
                       <div className="ripple-container"></div>
                     </a>
-                      { saved && content !== undefined && content != null && !architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                      {/* { saved && content !== undefined && content != null && !architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
+                      { saved && content !== undefined && content != null &&
                         this.renderFullMenu()
                       }
 
@@ -256,11 +233,11 @@ class ContentBar extends Component {
                         this.renderUnsavedMenu(isPage)
                       }
                   </div>
-                }
+                {/* } */}
 
               {  saved && content !== undefined && content != null &&
                 hasPreview &&
-                <a href={routes['previewContent'].replace(':id',content.id)+params} target="_blank" className="btn btn-default" > <i className="fa fa-eye"></i> &nbsp; {Lang.get('fields.preview') } </a>
+                <a href={routes['previewContent'].replace(':id',content.id)} target="_blank" className="btn btn-default" > <i className="fa fa-eye"></i> &nbsp; {Lang.get('fields.preview') } </a>
               }
               <a href="" className="btn btn-primary"
                 onClick={this.onSubmitForm.bind(this)}

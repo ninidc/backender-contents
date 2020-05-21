@@ -2,6 +2,7 @@
 
 namespace Backender\Contents;
 
+use Backender\Contents\Http\Middleware\DetectUserLocale;
 use Config;
 use Illuminate\Database\Eloquent\Factory;
 use Illuminate\Foundation\AliasLoader;
@@ -29,10 +30,8 @@ class BackenderContentProvider extends ServiceProvider
         $this->registerViews();
         $this->registerRoutes();
         $this->registerFactories();
-
         $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
-
-        $router->aliasMiddleware('DetectUserLocale', \Backender\Contents\Http\Middleware\DetectUserLocale::class);
+        $router->aliasMiddleware('DetectUserLocale', DetectUserLocale::class);
 
         // FIXME : don't know if necesary
         //$this->registerAliases();
@@ -65,6 +64,7 @@ class BackenderContentProvider extends ServiceProvider
     public function register()
     {
         $this->commands([
+            \Backender\Contents\Console\BuildJsonFileRoutes::class,
             \Backender\Contents\Console\ElasticSearchIndexAllContents::class,
             \Backender\Contents\Console\ElasticSearchBuildsIndexes::class,
             \Backender\Contents\Console\ElasticSearchRemoveAllIndexes::class,
@@ -88,7 +88,7 @@ class BackenderContentProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/Config/elasticsearch.php', 'architect.elasticsearch');
         $this->mergeConfigFrom(__DIR__.'/Config/images.php', 'images');
         $this->mergeConfigFrom(__DIR__.'/Config/database.php', 'database.connections');
-        $this->mergeConfigFrom(__DIR__.'/Config/settings.php', 'settings');
+
         $this->mergeConfigFrom(__DIR__.'/Config/fonts.php', 'fonts');
 
         // We really use-it ?
@@ -96,12 +96,14 @@ class BackenderContentProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/Config/fields.php', 'fields');
         $this->mergeConfigFrom(__DIR__.'/Config/styles.php', 'styles');
 
-        $this->mergeConfigFrom(__DIR__.'/Config/menu.php', 'architect::menu');
+        $this->mergeConfigFrom(__DIR__.'/Config/settings.php', 'backender::settings');
 
-        $this->mergeConfigFrom(
-            __DIR__.'/Config/users.php',
-            'architect::settings.users'
-        );
+        $this->mergeConfigFrom(__DIR__.'/Config/menu.php', 'backender::menu');
+
+        // $this->mergeConfigFrom(
+        //     __DIR__.'/Config/users.php',
+        //     'backender::settings.users'
+        // );
     }
 
     /**

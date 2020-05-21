@@ -190,7 +190,7 @@ class ModalSelectItem extends Component {
           widgets.push(
             <div className="col-xs-4" key={key}>
               <a href="" onClick={this.addItem.bind(this,WIDGETS[key])}>
-                <div className="grid-item with-image" style={{backgroundImage:'url('+ASSETS+'modules/architect/images/widgets/'+WIDGETS[key]['label'].toLowerCase()+'.jpg)'}}>
+                <div className="grid-item with-image" style={{backgroundImage:'url('+ASSETS+'backender/contents/images/widgets/'+WIDGETS[key]['label'].toLowerCase()+'.jpg)'}}>
                   {/*<i className={"fa "+ WIDGETS[key].icon}></i>*/}
                   <p className="grid-item-name">
                     {WIDGETS[key].name}

@@ -3,19 +3,13 @@
 namespace Backender\Contents\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-
+use Auth;
+use Backender\Contents\Entities\Style;
+use Backender\Contents\Jobs\Style\UpdateStyle;
+use Backender\Contents\Repositories\StyleRepository;
+use Backender\Contents\Transformers\StyleFormTransformer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-
-use Backender\Contents\Repositories\StyleRepository;
-use Backender\Contents\Jobs\Style\UpdateStyle;
-
-use Backender\Contents\Entities\Style;
-use Backender\Contents\Transformers\StyleFormTransformer;
-
-use Auth;
-use Session;
-
 
 class StyleController extends Controller
 {
@@ -27,27 +21,24 @@ class StyleController extends Controller
 
     public function index()
     {
-        return view('architect::styles.index');
+        return view('backender:contents::styles.index');
     }
 
     public function show($name)
     {
-
         $data = [
-            'layout' => config('styles.'.$name)
+            'layout' => config('styles.'.$name),
         ];
 
-        $style = Style::where('identifier',$name)->first();
+        $style = Style::where('identifier', $name)->first();
 
-        return view('architect::styles.form',  [
-          'layout' =>$data,
+        return view('backender:contents::styles.form', [
+          'layout' => $data,
           'form' => $style, // object for the update
           'name' => $name,
-          'fields' =>  (new StyleFormTransformer($style))->toArray()
+          'fields' => (new StyleFormTransformer($style))->toArray(),
         ]);
     }
-
-
 
     public function update(Style $style, Request $request)
     {
@@ -55,13 +46,11 @@ class StyleController extends Controller
 
         return $style ? response()->json([
             'success' => true,
-            'style' => $style
+            'style' => $style,
         ]) : response()->json([
-            'success' => false
+            'success' => false,
         ], 500);
     }
-
-
 
     /*public function delete(Style $style, DeleteStyleRequest $request)
     {
@@ -71,6 +60,4 @@ class StyleController extends Controller
             'success' => false
         ], 500);
     }*/
-
-
 }

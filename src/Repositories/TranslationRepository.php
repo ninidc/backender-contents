@@ -5,7 +5,7 @@ namespace Backender\Contents\Repositories;
 use Prettus\Repository\Eloquent\BaseRepository;
 
 use Backender\Contents\Entities\Translation;
-use Datatables;
+use DataTables;
 use Lang;
 
 class TranslationRepository extends BaseRepository
@@ -22,7 +22,7 @@ class TranslationRepository extends BaseRepository
             ->groupBy('translations.id')
             ->orderBy('translations.updated_at','DESC');
 
-        return Datatables::of(Translation::all())
+        return DataTables::of(Translation::all())
             ->addColumn('order', function ($item) {
                 return isset($item->order) ? $item->order : null;
             })

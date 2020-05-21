@@ -245,7 +245,7 @@ class PageItem extends Component {
                 <div className="item-header">
 
                     <div className="left-buttons">
-                        {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                        {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                             <span>
                                 {childrenIndex > 0 &&
                                     <a href="" className="btn btn-link" onClick={this.onPullUpItem.bind(this)}>
@@ -259,14 +259,14 @@ class PageItem extends Component {
                                 }
                 &nbsp;
                 </span>
-                        }
+                        {/* } */}
 
                         <SettingsPreview
                             field={this.props.data.field}
                         />
 
                     </div>
-                    {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                    {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                         <div className="right-buttons">
                             <a href="" className="btn btn-link" onClick={this.onCopyItem.bind(this)}>
                                 <i className="far fa-copy"></i>
@@ -275,7 +275,7 @@ class PageItem extends Component {
                                 <i className="fas fa-trash-alt"></i>
                             </a>
                         </div>
-                    }
+                    {/* } */}
                 </div>
 
                 <div className="item-content" onClick={this.onEditItem.bind(this)}>

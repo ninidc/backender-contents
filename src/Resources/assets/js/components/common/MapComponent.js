@@ -64,8 +64,8 @@ class MapComponent extends Component
     }
 
     var customIcon = L.icon({
-        iconUrl: ASSETS+'modules/architect/images/marker-icon.png',
-        shadowUrl: ASSETS+'modules/architect/images/marker-shadow.png',
+        iconUrl: ASSETS+'backender/contents/images/marker-icon.png',
+        shadowUrl: ASSETS+'backender/contents/images/marker-shadow.png',
 
         iconSize:     [25, 41], // size of the icon
         shadowSize:   [41, 41], // size of the shadow

@@ -1,4 +1,5 @@
-@foreach(config('architect::menu') as $item)
+@if(config('backender:contents::menu'))
+@foreach(config('backender:contents::menu') as $item)
 
     {{-- If current user can show this menu --}}
     @if(!empty($item['permissions'])) 
@@ -24,3 +25,4 @@
     </li>
 
 @endforeach()
+@endif

@@ -121,7 +121,7 @@ class Col extends Component {
             <div className={this.props.colClass}>
                 <div className="row-container-body-content">
 
-                    {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                    {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
                         <div className="row-container-body-top">
 
                             {childrenLength > 0 &&
@@ -134,16 +134,16 @@ class Col extends Component {
                                 <i className="fa fa-pencil-alt"></i>
                             </a>
                         </div>
-                    }
-                    {architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                    } */}
+                    {/* {architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
                         <div className="row-container-body-top"></div>
-                    }
+                    {/* } */}
 
 
                     {this.renderChildren()}
 
 
-                    {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+                    {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
                         <div className="row-container-body-bottom">
                             {childrenLength > 0 &&
                                 <a href="" className="btn btn-link" onClick={this.onSelectItemAfter.bind(this)}>
@@ -151,7 +151,7 @@ class Col extends Component {
                                 </a>
                             }
                         </div>
-                    }
+                    } */}
 
                 </div>
             </div>

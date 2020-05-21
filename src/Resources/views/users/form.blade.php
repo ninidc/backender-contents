@@ -1,4 +1,4 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 
@@ -125,10 +125,10 @@
 
                     @php
                       $languages = [
-                                    'ca' => Lang::get('architect::user.catalan'),
-                                    'es' => Lang::get('architect::user.spanish'),
-                                    'en' => Lang::get('architect::user.english'),
-                                    'fr' => Lang::get('architect::user.french')
+                                    'ca' => Lang::get('backender:contents::user.catalan'),
+                                    'es' => Lang::get('backender:contents::user.spanish'),
+                                    'en' => Lang::get('backender:contents::user.english'),
+                                    'fr' => Lang::get('backender:contents::user.french')
                                    ];
                      $userLang = isset($user) && $user->language != '' ? $user->language : old('language');
 
@@ -185,7 +185,7 @@
             <div class="row">
                 <div class="col-md-12 text-right">
                     {!!
-                        Form::submit(Lang::get('architect::fields.save'), [
+                        Form::submit(Lang::get('backender:contents::fields.save'), [
                             'class' => 'btn btn-primary'
                         ])
                     !!}

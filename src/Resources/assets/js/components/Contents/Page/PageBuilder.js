@@ -8,8 +8,7 @@ import {
   updatePageImage,
   updateSelectedContent,
   cancelContent,
-  updatePageContent,
-  updateParameters
+  updatePageContent
 } from './../actions/';
 
 import ContentFields from './../Content/ContentFields';
@@ -34,7 +33,6 @@ class PageBuilder extends Component {
     e.preventDefault();
 
     this.props.addRow(this.props.app.layout);
-
   }
 
   renderRows() {
@@ -56,26 +54,12 @@ class PageBuilder extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("PageBuilder :: ",nextProps.app);
-
     if(!this.loaded && nextProps.app.loaded){
-      //app is loaded
-
-      //console.log("PageBuilder :: first update parameters");
-
-      this.props.updateParameters(
-        nextProps.app.layout,
-        nextProps.modalEdit.originalElements,
-        nextProps.app.parameters,
-        nextProps.app.parametersList,
-      );
-
-      this.loaded = true;
+        this.loaded = true;
     }
   }
 
   handleImageSelected(media){
-
       this.props.updatePageImage(
         media,
         this.props.images.sourceField,
@@ -109,8 +93,9 @@ class PageBuilder extends Component {
   render() {
     const fields = this.props.app.fields;
     const contentSourceField = this.props.contents.sourceField;
-    const mediaType = this.props.images.sourceField != null ?
-      this.props.images.sourceField.type : null;
+    const mediaType = this.props.images.sourceField != null 
+        ? this.props.images.sourceField.type 
+        : null;
 
     return (
       <div className="col-xs-9 page-content page-builder">
@@ -142,22 +127,20 @@ class PageBuilder extends Component {
           onContentCancel={this.handleContentCancel.bind(this)}
         />
 
-        <ModalEditItem
-          zIndex={9000}
-        />
+        <ModalEditItem zIndex={9000} />
 
         <ContentFields />
 
         <div className="field-group">
-          {this.props.app.layout != null &&
-            this.renderRows()
-          }
+            {this.props.app.layout != null &&
+                this.renderRows()
+            }
 
-          {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) &&
+          {/* {!architect.currentUserHasRole(ROLES['ROLE_ADMIN']) && */}
             <FirstEmptyRow
                 onAddRow={this.handleAddRow.bind(this)}
             />
-          }
+          {/* } */}
         </div>
       </div>
     );
@@ -168,12 +151,12 @@ class PageBuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        app: state.app,
-        modalItem : state.modalItem,
-        modalEdit : state.modalEdit,
-        images : state.images,
-        contents : state.contents,
-        modalEditList : state.modalEditList
+        app             : state.app,
+        modalItem       : state.modalItem,
+        modalEdit       : state.modalEdit,
+        images          : state.images,
+        contents        : state.contents,
+        modalEditList   : state.modalEditList
     }
 }
 
@@ -196,9 +179,6 @@ const mapDispatchToProps = dispatch => {
         },
         updatePageContent : (content,field,pathToIndex,layout,editItem,listItemInfo) => {
             return dispatch(updatePageContent(content,field,pathToIndex,layout,editItem,listItemInfo));
-        },
-        updateParameters : (definition, elements, pageParameters, parametersList) => {
-            return dispatch(updateParameters(definition, elements, pageParameters, parametersList))
         }
     }
 }

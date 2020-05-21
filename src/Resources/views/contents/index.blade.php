@@ -1,4 +1,4 @@
-@extends('architect::layouts.master')
+@extends('backender:ui::layouts.master')
 
 @section('content')
 
@@ -6,11 +6,11 @@
 
 <div class="container leftbar-page">
 
-  @include('backender:contents::partials.content-nav',[
-    'typologies' => $typologies,
-    'typology_id' => Request('typology_id'),
-    'display_pages' => Request('display_pages')
-  ])
+    @include('backender:contents::partials.content-nav',[
+        'typologies' => $typologies,
+        'typology_id' => Request('typology_id'),
+        'display_pages' => Request('display_pages')
+    ])
 
   <div class="col-xs-offset-2 col-xs-10 page-content">
 
@@ -20,7 +20,7 @@
     <table class="table" id="table-contents" data-url="{{route('contents.data', request()->all())}}">
         <thead>
            <tr>
-               <th> {{Lang::get('backender::fields.name')}}</th>
+               <th>{{Lang::get('backender::fields.name')}}</th>
                <th>{{Lang::get('backender::fields.tipus')}}</th>
                <th>{{Lang::get('backender::fields.updated')}}</th>
                <th>{{Lang::get('backender::fields.status')}}</th>
@@ -37,20 +37,9 @@
            </tr>
         </tfoot>
     </table>
-
   </div>
-
 </div>
 @stop
-
-
-@push('plugins')
-    {{ Html::script('/modules/architect/plugins/datatables/datatables.min.js') }}
-    {{ HTML::style('/modules/architect/plugins/datatables/datatables.min.css') }}
-    {{ Html::script('/modules/architect/plugins/bootbox/bootbox.min.js') }}
-    {{ Html::script('/modules/architect/js/libs/datatabletools.js') }}
-    {{ Html::script('/modules/architect/js/architect.js') }}
-@endpush
 
 @push('javascripts-libs')
 <script>
@@ -67,23 +56,18 @@
 </script>
 @endpush
 
-
 @push('javascripts')
-
 <script>
 $(function(){
+    $(".btn-primary").click(function(e){
+        e.preventDefault();
+        TweenMax.to($("#new-content-modal"),0.5,{opacity:1,display:"block",ease:Power2.easeInOut});
+    });
 
-  $(".btn-primary").click(function(e){
-    e.preventDefault();
-    TweenMax.to($("#new-content-modal"),0.5,{opacity:1,display:"block",ease:Power2.easeInOut});
-  });
-
-  $(document).on('click',"#new-content-modal .close-btn",function(e){
-    e.preventDefault();
-    TweenMax.to($("#new-content-modal"),0.5,{opacity:0,display:"none",ease:Power2.easeInOut});
-  });
-
+    $(document).on('click',"#new-content-modal .close-btn",function(e){
+        e.preventDefault();
+        TweenMax.to($("#new-content-modal"),0.5,{opacity:0,display:"none",ease:Power2.easeInOut});
+    });
 });
 </script>
-
 @endpush

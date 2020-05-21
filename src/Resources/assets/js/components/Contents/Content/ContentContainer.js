@@ -11,8 +11,10 @@ import MediaSelectModal from './../../Medias/MediaSelectModal';
 import ContentSelectModal from './../ContentSelectModal';
 
 import {
-    cancelImage, updateImage,
-    updateSelectedContent, cancelContent
+    cancelImage, 
+    updateImage,
+    updateSelectedContent, 
+    cancelContent
 } from './../actions/';
 
 class ContentContainer extends Component {

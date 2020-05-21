@@ -5,6 +5,7 @@ import ButtonSecondary from '../../ButtonSecondary';
 import CollapsableGroup from '../../CollapsableGroup';
 import ButtonDropdown from '../../ButtonDropdown';
 import {connect} from 'react-redux';
+import router from '../../../router';
 
 import {
   initState
@@ -57,13 +58,13 @@ class TemplateRedux extends Component {
               {
                 label: 'Nouveau',
                 icon: 'fa fa-plus-circle',
-                route: '/architect/contents/page/create',
+                route: router.route('contents.page.create'),
                 className: ''
               },
               {
                 label: 'Nouveau',
                 icon: 'fa fa-plus-circle',
-                route: '/architect/contents/page/create',
+                route: router.route('contents.page.create'),
                 className: 'text-danger'
               }
             ]}
